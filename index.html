@@ -1,495 +1,716 @@
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Lucea Media ayuda a clínicas de tricología a captar más pacientes mediante Meta Anuncios y redes sociales.">
-  <title>Lucea Media | Captación de pacientes</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Lucea Media: marketing para clínicas de tricología.">
+<title>Lucea Media | Marketing para clínicas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #090909;
+  --gold: #c8a12e;
+  --white: #f1ede7;
+  --muted: #bcb6aa;
+  --line: #2c2a25;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--white);
+  font-family: "DM Sans", sans-serif;
+}
+a { color: inherit; text-decoration: none; }
+button, input, textarea { font: inherit; }
+.container {
+  width: min(1390px, 89%);
+  margin: auto;
+}
+h1, h2, h3 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 400;
+}
+em { color: var(--gold); }
+.eyebrow {
+  color: var(--gold);
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+.muted {
+  color: var(--muted);
+  line-height: 1.85;
+}
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(9,9,9,.96);
+  border-bottom: 1px solid #222;
+}
+.header-inner {
+  max-width: 1650px;
+  margin: auto;
+  min-height: 92px;
+  padding: 15px 5%;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  justify-content: space-between;
+}
+.brand {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  white-space: nowrap;
+}
+.brand span { color: var(--gold); }
+.nav {
+  display: flex;
+  gap: 30px;
+  margin-left: auto;
+}
+.nav a {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.nav a:hover { color: var(--gold); }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  border: 1px solid #79601e;
+  padding: 17px 22px;
+  background: transparent;
+  color: var(--white);
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: .2s;
+}
+.btn span { color: var(--gold); }
+.btn:hover {
+  background: var(--gold);
+  color: #090909;
+}
+.btn:hover span { color: #090909; }
 
-  <style>
-    :root {
-      --negro: #0b0b0b;
-      --dorado: #c9a334;
-      --blanco: #f3f0eb;
-      --gris: #b7b4af;
-    }
+/* PORTADA */
+.hero {
+  min-height: 760px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 7%;
+  align-items: center;
+  padding-top: 110px;
+  padding-bottom: 110px;
+}
+.hero h1 {
+  font-size: clamp(50px,5.3vw,92px);
+  line-height: 1.08;
+  letter-spacing: -2px;
+  margin: 34px 0;
+}
+.hero p {
+  font-size: 18px;
+  max-width: 580px;
+  margin-bottom: 32px;
+}
+.photo-wrap {
+  position: relative;
+  padding: 35px 15px;
+}
+.photo-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 6% 4% 2% 10%;
+  border: 1px solid var(--gold);
+  transform: rotate(11deg);
+}
+.photo-slot {
+  position: relative;
+  background: #1c1c1c;
+  border: 1px solid #34312b;
+  min-height: 420px;
+  aspect-ratio: 1.2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 25px;
+  gap: 15px;
+}
+.monogram {
+  font-family: "Playfair Display", serif;
+  font-size: 78px;
+  color: var(--gold);
+}
 
-    * { box-sizing: border-box; }
+/* SECCIONES */
+.section {
+  padding: 125px 0;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 95px;
+}
+.section h2 {
+  font-size: clamp(47px,5.5vw,89px);
+  line-height: 1.07;
+  letter-spacing: -2px;
+  margin: 35px 0;
+}
 
-    html { scroll-behavior: smooth; }
+/* BENEFICIOS */
+.benefits {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 11%;
+}
+.benefit {
+  display: grid;
+  grid-template-columns: 55px 1fr;
+  gap: 20px;
+  padding: 35px 0;
+  border-bottom: 1px solid var(--line);
+}
+.num {
+  color: var(--gold);
+  letter-spacing: 3px;
+}
+.benefit h3 {
+  font-size: 30px;
+  margin: 0 0 20px;
+}
+.benefit p { margin: 0; }
 
-    body {
-      margin: 0;
-      background: var(--negro);
-      color: var(--blanco);
-      font-family: "DM Sans", sans-serif;
-    }
+/* EQUIPO */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 32px;
+}
+.person-image {
+  aspect-ratio: 4/4.5;
+  background: #1c1c1c;
+  border: 1px solid #292929;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+  color: #aaa;
+}
+.person-image svg {
+  width: 54px;
+  height: 54px;
+  stroke: var(--gold);
+  stroke-width: 1.1;
+  fill: none;
+}
+.person-name {
+  color: var(--gold);
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin: 28px 0;
+}
+.person h3 {
+  font-size: 28px;
+  line-height: 1.35;
+}
+.person p { font-size: 16px; }
 
-    a { color: inherit; text-decoration: none; }
+/* PROCESO */
+.process-layout {
+  display: grid;
+  grid-template-columns: .95fr 1.8fr;
+  gap: 8%;
+}
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 18px;
+}
+.process-card {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  min-height: 380px;
+  padding: 28px 24px;
+}
+.process-card .number {
+  font-family: "Playfair Display", serif;
+  font-size: 42px;
+  color: var(--gold);
+}
+.process-card h3 {
+  font-size: 25px;
+  margin: 56px 0 18px;
+}
+.process-card p { font-size: 15px; }
 
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 25px;
-      padding: 24px 5%;
-      border-bottom: 1px solid #222;
-    }
+/* CONTACTO */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11%;
+}
+.contact-form {
+  border: 1px solid var(--line);
+  padding: 40px;
+  background: #0c0c0c;
+}
+.field { margin-bottom: 23px; }
+.field label {
+  display: block;
+  color: #b5ab98;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 1.7px;
+  margin-bottom: 11px;
+}
+.field input, .field textarea {
+  width: 100%;
+  background: #101010;
+  border: 1px solid #38352f;
+  color: var(--white);
+  padding: 17px 18px;
+  outline: none;
+}
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--gold);
+}
+.field textarea {
+  min-height: 145px;
+  resize: vertical;
+}
+.submit-btn { width: 100%; }
+.form-note {
+  color: #b5aa92;
+  font-size: 12px;
+  line-height: 1.6;
+}
 
-    .logo {
-      font-size: 20px;
-      letter-spacing: 3px;
-      font-weight: 700;
-      white-space: nowrap;
-    }
+/* FOOTER */
+.footer {
+  border-top: 1px solid var(--line);
+  padding: 42px 0 25px;
+}
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  padding-bottom: 65px;
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.footer-bottom {
+  border-top: 1px solid var(--line);
+  padding-top: 25px;
+  font-size: 12px;
+  color: #777;
+}
 
-    .logo span, .gold { color: var(--dorado); }
+/* TABLET */
+@media(max-width:1100px) {
+  .header-inner { flex-wrap: wrap; }
+  .nav {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    margin: 0;
+  }
+  .process-layout { grid-template-columns: 1fr; }
+  .process-grid { margin-top: 30px; }
+}
 
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-    }
-
-    nav a {
-      font-size: 12px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
-
-    nav a:hover { color: var(--dorado); }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 20px;
-      padding: 17px 24px;
-      border: 1px solid var(--dorado);
-      color: var(--blanco);
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      transition: .3s;
-    }
-
-    .btn:hover {
-      background: var(--dorado);
-      color: #080808;
-    }
-
-    .btn span { color: var(--dorado); }
-    .btn:hover span { color: #080808; }
-
-    .hero {
-      max-width: 1500px;
-      margin: auto;
-      min-height: 730px;
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      align-items: center;
-      gap: 65px;
-      padding: 110px 7%;
-    }
-
-    .eyebrow {
-      color: var(--dorado);
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      line-height: 1.8;
-    }
-
-    h1, h2, h3 {
-      font-family: "Playfair Display", Georgia, serif;
-      font-weight: 400;
-    }
-
-    h1 {
-      font-size: clamp(48px, 5.5vw, 91px);
-      line-height: 1.13;
-      letter-spacing: -2px;
-      margin: 30px 0;
-    }
-
-    h1 em {
-      color: var(--dorado);
-      font-weight: 400;
-    }
-
-    .hero p {
-      color: var(--gris);
-      font-size: 17px;
-      line-height: 1.8;
-      max-width: 570px;
-      margin-bottom: 35px;
-    }
-
-    .photo-frame {
-      position: relative;
-      min-height: 480px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .photo-frame::before {
-      content: "";
-      position: absolute;
-      width: 85%;
-      height: 88%;
-      border: 1px solid var(--dorado);
-      transform: rotate(11deg);
-    }
-
-    .photo-placeholder {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      aspect-ratio: 1.18;
-      background: #181818;
-      border: 1px solid #333;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 30px;
-      gap: 14px;
-    }
-
-    .photo-placeholder .symbol {
-      color: var(--dorado);
-      font-family: Georgia, serif;
-      font-size: 60px;
-    }
-
-    .photo-placeholder p {
-      color: #999;
-      font-size: 13px;
-      margin: 0;
-    }
-
-    section {
-      padding: 110px 8%;
-      border-top: 1px solid #242424;
-      scroll-margin-top: 20px;
-    }
-
-    .section-inner {
-      max-width: 1300px;
-      margin: auto;
-    }
-
-    h2 {
-      font-size: clamp(36px, 4vw, 60px);
-      line-height: 1.2;
-      margin: 20px 0 45px;
-    }
-
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 35px;
-    }
-
-    .service {
-      border-top: 1px solid #4a4128;
-      padding-top: 25px;
-    }
-
-    .number {
-      font-family: "Playfair Display", serif;
-      color: var(--dorado);
-      font-size: 46px;
-    }
-
-    .service h3 {
-      font-size: 27px;
-      margin: 22px 0 12px;
-    }
-
-    .service p, .body-text {
-      color: var(--gris);
-      line-height: 1.9;
-      font-size: 16px;
-    }
-
-    .about {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .about h2 { margin-bottom: 25px; }
-
-    .about-panel {
-      border: 1px solid #4a4128;
-      padding: 55px;
-      background: #111;
-    }
-
-    .about-panel strong {
-      display: block;
-      font-family: "Playfair Display", serif;
-      font-size: 40px;
-      font-weight: 400;
-      margin-bottom: 20px;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 35px;
-    }
-
-    .step {
-      padding: 30px 0;
-      border-top: 1px solid #51452a;
-    }
-
-    .step h3 { font-size: 26px; }
-
-    .contact {
-      text-align: center;
-      padding: 130px 8%;
-    }
-
-    .contact h2 {
-      max-width: 850px;
-      margin: 25px auto;
-    }
-
-    .contact p {
-      color: var(--gris);
-      margin-bottom: 35px;
-    }
-
-    footer {
-      padding: 35px 8%;
-      border-top: 1px solid #242424;
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      color: #999;
-      font-size: 13px;
-    }
-
-    @media (max-width: 1050px) {
-      header { flex-wrap: wrap; }
-      nav { order: 3; width: 100%; flex-wrap: wrap; }
-      .hero { gap: 40px; padding: 80px 6%; }
-    }
-
-    @media (max-width: 700px) {
-      header { padding: 22px 6%; }
-      nav { gap: 16px; }
-      nav a { font-size: 10px; }
-      .header-btn { display: none; }
-
-      .hero {
-        grid-template-columns: 1fr;
-        padding: 75px 7%;
-        gap: 55px;
-      }
-
-      h1 { font-size: clamp(45px, 10vw, 65px); }
-      .photo-frame { min-height: 300px; }
-      section { padding: 75px 7%; }
-
-      .service-grid, .steps, .about {
-        grid-template-columns: 1fr;
-        gap: 35px;
-      }
-
-      .about-panel { padding: 30px; }
-      footer { flex-direction: column; }
-    }
-  </style>
+/* MOVIL */
+@media(max-width:800px) {
+  .container { width: calc(100% - 42px); }
+  .hero, .benefits, .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  .hero { padding: 80px 0; }
+  .hero h1 { font-size: 52px; }
+  .section { padding: 85px 0; }
+  .team-grid { grid-template-columns: 1fr; }
+  .process-grid { grid-template-columns: 1fr 1fr; }
+  .photo-slot { min-height: 330px; }
+  .footer-top { flex-direction: column; }
+}
+@media(max-width:540px) {
+  .header-inner > .btn { display: none; }
+  .nav {
+    gap: 15px;
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
+  .nav a { font-size: 10px; }
+  .hero h1 { font-size: 45px; }
+  .section h2 { font-size: 44px; }
+  .process-grid { grid-template-columns: 1fr; }
+  .process-card { min-height: 230px; }
+  .process-card h3 { margin-top: 28px; }
+  .contact-form { padding: 23px; }
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <a href="#inicio" class="logo">
+<header class="header">
+  <div class="header-inner">
+    <a href="#inicio" class="brand">
       LUCEA <span>MEDIA</span>
     </a>
-
-    <nav aria-label="Navegación principal">
+    <nav class="nav">
       <a href="#servicios">Servicios</a>
       <a href="#nosotros">Sobre nosotros</a>
       <a href="#proceso">Proceso</a>
       <a href="#contacto">Contacto</a>
     </nav>
-
-    <a href="#contacto" class="btn header-btn">
+    <a href="#contacto" class="btn">
       Programa una conversación <span>→</span>
     </a>
-  </header>
+  </div>
+</header>
 
-  <main>
+<main>
 
-    <div class="hero" id="inicio">
-      <div>
-        <div class="eyebrow">
-          Meta Anuncios · Redes Sociales · Clínicas de Tricología
+<!-- PORTADA -->
+<section class="container hero" id="inicio">
+  <div>
+    <div class="eyebrow">
+      Meta Anuncios · Redes Sociales · Clínicas de Tricología
+    </div>
+    <h1>
+      Ayudamos a las clínicas de tricología
+      <em>a captar más pacientes.</em>
+    </h1>
+    <p class="muted">
+      Meta Anuncios + Redes Sociales para clínicas
+      que desean crecer, llenar su agenda y
+      posicionarse como referentes en su sector.
+    </p>
+    <a href="#contacto" class="btn">
+      Programa una conversación <span>→</span>
+    </a>
+  </div>
+
+  <div class="photo-wrap">
+    <div class="photo-slot">
+      <div class="monogram">LM.</div>
+      <p class="muted">Fotografía del equipo pendiente</p>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section class="section" id="servicios">
+  <div class="container benefits">
+    <div>
+      <div class="eyebrow">¿Qué gana usted?</div>
+      <h2>
+        Marketing que <em>funciona</em>
+        para desarrollar la marca.
+      </h2>
+    </div>
+
+    <div>
+      <div class="benefit">
+        <span class="num">01</span>
+        <div>
+          <h3>Más pacientes</h3>
+          <p class="muted">
+            Llegamos a personas que buscan
+            servicios como el suyo.
+          </p>
         </div>
-
-        <h1>
-          Ayudamos a las clínicas de tricología
-          <em>a captar más pacientes.</em>
-        </h1>
-
-        <p>
-          Meta Anuncios + Redes Sociales para clínicas
-          que desean crecer, llenar su agenda y
-          posicionarse como referentes en su sector.
-        </p>
-
-        <a href="#contacto" class="btn">
-          Programa una conversación <span>→</span>
-        </a>
       </div>
 
-      <div class="photo-frame">
-        <div class="photo-placeholder">
-          <div class="symbol">LM.</div>
-          <div class="eyebrow">Lucea Media</div>
-          <p>Próximamente, nuestra fotografía</p>
+      <div class="benefit">
+        <span class="num">02</span>
+        <div>
+          <h3>Comunicación constante</h3>
+          <p class="muted">
+            Combinamos publicidad y contenido
+            en una imagen de marca coherente.
+          </p>
+        </div>
+      </div>
+
+      <div class="benefit">
+        <span class="num">03</span>
+        <div>
+          <h3>Mejor uso del presupuesto</h3>
+          <p class="muted">
+            Probamos, analizamos y desarrollamos
+            actividades basadas en datos.
+          </p>
         </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <section id="servicios">
-      <div class="section-inner">
-        <div class="eyebrow">Nuestros servicios</div>
-        <h2>Estrategias que generan oportunidades.</h2>
+<!-- EQUIPO -->
+<section class="section" id="nosotros">
+  <div class="container">
+    <div class="eyebrow">03 — Sobre nosotros</div>
+    <h2>
+      Tres perspectivas.<br>
+      <em>Una dirección.</em>
+    </h2>
 
-        <div class="service-grid">
-          <article class="service">
-            <div class="number">01</div>
-            <h3>Meta Anuncios</h3>
-            <p>
-              Campañas de publicidad en Facebook e
-              Instagram enfocadas en atraer pacientes
-              potenciales para tu clínica.
-            </p>
-          </article>
+    <div class="team-grid">
 
-          <article class="service">
-            <div class="number">02</div>
-            <h3>Redes Sociales</h3>
-            <p>
-              Contenido estratégico para posicionar
-              tu clínica, reforzar su imagen y
-              generar confianza.
-            </p>
-          </article>
-
-          <article class="service">
-            <div class="number">03</div>
-            <h3>Estrategia Integral</h3>
-            <p>
-              Combinamos publicidad y presencia digital
-              para ayudarte a construir un sistema
-              de captación sostenible.
-            </p>
-          </article>
+      <!-- JOANNA -->
+      <article class="person">
+        <div class="person-image">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="21" r="11"/>
+            <path d="M11 57c0-13 9-21 21-21s21 8 21 21"/>
+          </svg>
+          <small>Foto de Joanna pendiente</small>
         </div>
-      </div>
-    </section>
-
-    <section id="nosotros">
-      <div class="section-inner about">
-        <div>
-          <div class="eyebrow">Sobre nosotros</div>
-          <h2>No hacemos marketing para todo el mundo.</h2>
-          <p class="body-text">
-            En Lucea Media nos enfocamos en las
-            necesidades de las clínicas de tricología.
-            Creemos que una estrategia de marketing
-            debe ayudar a conectar cada clínica con
-            las personas que buscan sus servicios.
-          </p>
-          <p class="body-text">
-            Nuestro enfoque combina estrategia,
-            comunicación y captación digital.
-          </p>
-        </div>
-
-        <div class="about-panel">
-          <div class="eyebrow">Nuestra filosofía</div>
-          <strong>Especialización antes que generalización.</strong>
-          <p class="body-text">
-            Trabajamos para que cada acción digital
-            tenga un propósito claro y contribuya
-            al crecimiento de tu clínica.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="proceso">
-      <div class="section-inner">
-        <div class="eyebrow">Cómo trabajamos</div>
-        <h2>Un proceso claro. Una estrategia a medida.</h2>
-
-        <div class="steps">
-          <div class="step">
-            <div class="number">01</div>
-            <h3>Analizamos</h3>
-            <p class="body-text">
-              Conocemos tu clínica, tus objetivos
-              y tu situación actual.
-            </p>
-          </div>
-
-          <div class="step">
-            <div class="number">02</div>
-            <h3>Diseñamos</h3>
-            <p class="body-text">
-              Preparamos una estrategia digital
-              adaptada a tus necesidades.
-            </p>
-          </div>
-
-          <div class="step">
-            <div class="number">03</div>
-            <h3>Optimizamos</h3>
-            <p class="body-text">
-              Analizamos las campañas y realizamos
-              mejoras para buscar mejores resultados.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="contact" id="contacto">
-      <div class="section-inner">
-        <div class="eyebrow">Hablemos de tu clínica</div>
-        <h2>Tu próximo paso hacia una clínica con más oportunidades.</h2>
-        <p>
-          Descubre cómo podemos ayudarte a atraer
-          nuevos pacientes potenciales.
+        <div class="person-name">Joanna</div>
+        <h3>Estrategia y comunicación</h3>
+        <p class="muted">
+          Me encargo de la estrategia y la comunicación
+          para clínicas de tricología.
+          Disfruto combinando análisis con creatividad.
         </p>
-        <a href="mailto:contacto@ejemplo.com" class="btn">
-          Programa una conversación <span>→</span>
-        </a>
+        <p class="muted">
+          Me interesan las nuevas tecnologías,
+          la fotografía y el diseño gráfico.
+          Me gusta explorar soluciones diferentes.
+        </p>
+        <p class="muted">
+          Valoro escuchar, comprender las necesidades
+          de cada cliente y encontrar soluciones
+          que realmente le ayuden.
+        </p>
+      </article>
+
+      <!-- ALEXANDRA -->
+      <article class="person">
+        <div class="person-image">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="21" r="11"/>
+            <path d="M11 57c0-13 9-21 21-21s21 8 21 21"/>
+          </svg>
+          <small>Foto de Alexandra pendiente</small>
+        </div>
+        <div class="person-name">Alexandra</div>
+        <h3>Creación visual y contenido</h3>
+        <p class="muted">
+          Me dedico al diseño visual y a la creación
+          de contenido que genera confianza
+          y atrae la atención.
+        </p>
+        <p class="muted">
+          Combino creatividad, comunicación y
+          una visión orientada a objetivos
+          para construir marcas sólidas.
+        </p>
+        <p class="muted">
+          Disfruto colaborando y buscando nuevas
+          soluciones para cada proyecto.
+        </p>
+      </article>
+
+      <!-- ALEX -->
+      <article class="person">
+        <div class="person-image">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="21" r="11"/>
+            <path d="M11 57c0-13 9-21 21-21s21 8 21 21"/>
+          </svg>
+          <small>Foto de Alex pendiente</small>
+        </div>
+        <div class="person-name">Alex</div>
+        <h3>Estrategia digital y captación de pacientes</h3>
+        <p class="muted">
+          Trabajo en marketing digital para clínicas
+          de tricología, combinando estrategia,
+          comunicación y creatividad para conectar
+          con pacientes potenciales.
+        </p>
+        <p class="muted">
+          Mi enfoque abarca campañas de Meta Ads,
+          análisis de resultados, optimización
+          publicitaria y contenido visual coherente.
+        </p>
+        <p class="muted">
+          Me interesa comunicar de forma clara
+          y responsable servicios relacionados
+          con la alopecia, la tricoscopia y los
+          tratamientos capilares, respetando
+          el criterio de los profesionales sanitarios.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="section" id="proceso">
+  <div class="container process-layout">
+    <div>
+      <div class="eyebrow">04 — Proceso</div>
+      <h2>
+        Sencillo.<br>
+        Claro.<br>
+        <em>Efectivo.</em>
+      </h2>
+    </div>
+
+    <div class="process-grid">
+      <article class="process-card">
+        <div class="number">01</div>
+        <h3>Análisis</h3>
+        <p class="muted">
+          Conocemos su marca, servicios,
+          competencia y objetivos.
+        </p>
+      </article>
+
+      <article class="process-card">
+        <div class="number">02</div>
+        <h3>Estrategia</h3>
+        <p class="muted">
+          Creamos un plan de acción
+          y una estrategia de campaña.
+        </p>
+      </article>
+
+      <article class="process-card">
+        <div class="number">03</div>
+        <h3>Implementación</h3>
+        <p class="muted">
+          Realizamos campañas publicitarias
+          y actividades en redes sociales.
+        </p>
+      </article>
+
+      <article class="process-card">
+        <div class="number">04</div>
+        <h3>Mejoramiento</h3>
+        <p class="muted">
+          Analizamos los datos y optimizamos
+          continuamente las campañas.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="section" id="contacto">
+  <div class="container contact-layout">
+    <div>
+      <div class="eyebrow">05 — Contacto</div>
+      <h2>
+        ¿Listo para mejorar
+        <em>el rendimiento de tu marca?</em>
+      </h2>
+      <p class="muted">
+        Rellene el formulario y nos pondremos
+        en contacto con usted para hablar
+        sobre cómo podemos desarrollar su clínica.
+      </p>
+    </div>
+
+    <div class="contact-form">
+      <form id="contact-form">
+        <div class="field">
+          <label for="name">
+            Nombre / Nombre de la clínica
+          </label>
+          <input id="name" name="name" required
+            placeholder="Su nombre o empresa">
+        </div>
+
+        <div class="field">
+          <label for="email">Correo electrónico</label>
+          <input id="email" name="email" type="email"
+            required placeholder="nombre@clinica.com">
+        </div>
+
+        <div class="field">
+          <label for="phone">Teléfono</label>
+          <input id="phone" name="phone" type="tel"
+            placeholder="+34 ...">
+        </div>
+
+        <div class="field">
+          <label for="message">Mensaje</label>
+          <textarea id="message" name="message" required
+            placeholder="Háblenos sobre su clínica..."></textarea>
+        </div>
+
+        <button class="btn submit-btn" type="submit">
+          Hablemos <span>→</span>
+        </button>
+
+        <p class="form-note" id="form-status" role="status">
+          Formulario de demostración.
+          Todavía no envía mensajes.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- PIE DE PAGINA -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <a href="#inicio" class="brand">
+        LUCEA <span>MEDIA</span>
+      </a>
+      <div class="footer-links">
+        <a href="#servicios">Servicios</a>
+        <a href="#nosotros">Sobre nosotros</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#contacto">Contacto</a>
       </div>
-    </section>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Lucea Media · Meta Ads · Redes Sociales · Tricología
+    </div>
+  </div>
+</footer>
 
-  </main>
-
-  <footer>
-    <div>LUCEA <span class="gold">MEDIA</span></div>
-    <div>© 2026 Lucea Media. Todos los derechos reservados.</div>
-  </footer>
+<script>
+document.getElementById("contact-form")
+  .addEventListener("submit", function(event) {
+    event.preventDefault();
+    document.getElementById("form-status").textContent =
+      "El formulario todavía no está conectado. " +
+      "No se ha enviado ningún dato. " +
+      "Próximamente lo conectaremos a GoHighLevel.";
+  });
+</script>
 
 </body>
 </html>
