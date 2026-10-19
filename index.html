@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lucea Media | Agencia Creativa</title>
+  <meta name="description" content="Lucea Media, creatividad y estrategia digital para marcas.">
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #faf9f6;
+      color: #222;
+    }
+    header {
+      padding: 25px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e8e5df;
+    }
+    .logo {
+      font-size: 23px;
+      font-weight: bold;
+      letter-spacing: -1px;
+    }
+    nav a {
+      margin-left: 22px;
+      text-decoration: none;
+      color: #333;
+      font-size: 14px;
+    }
+    .hero {
+      min-height: 75vh;
+      padding: 110px 8%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .etiqueta {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 12px;
+      color: #888;
+    }
+    h1 {
+      font-size: clamp(48px, 8vw, 105px);
+      letter-spacing: -5px;
+      line-height: 1.05;
+      margin: 25px 0;
+    }
+    .hero p {
+      max-width: 520px;
+      font-size: 18px;
+      color: #777;
+      line-height: 1.7;
+    }
+    .boton {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 17px 32px;
+      background: #222;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+    section {
+      padding: 90px 8%;
+    }
+    h2 {
+      font-size: 40px;
+      letter-spacing: -2px;
+    }
+    .servicios {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .tarjeta {
+      padding: 35px;
+      background: #f0eee9;
+      border-radius: 8px;
+    }
+    .tarjeta h3 { font-size: 22px; }
+    .tarjeta p { color: #777; line-height: 1.7; }
+    .contacto {
+      background: #eae7e1;
+      text-align: center;
+    }
+    .contacto p { color: #666; }
+    footer {
+      padding: 30px 8%;
+      text-align: center;
+      color: #888;
+      font-size: 13px;
+    }
+    @media (max-width: 700px) {
+      header { padding: 20px 5%; }
+      nav a { margin-left: 10px; font-size: 12px; }
+      .hero { padding: 80px 6%; }
+      h1 { letter-spacing: -2px; }
+      section { padding: 60px 6%; }
+      .servicios { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">LUCEA MEDIA.</div>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero" id="inicio">
+      <span class="etiqueta">Agencia creativa digital</span>
+      <h1>Ideas que<br>iluminan.</h1>
+      <p>
+        Transformamos ideas en experiencias digitales.
+        Creatividad, diseño y estrategia para marcas
+        que quieren destacar.
+      </p>
+      <a href="#contacto" class="boton">
+        Trabajemos juntos →
+      </a>
+    </div>
+
+    <section id="servicios">
+      <span class="etiqueta">Lo que hacemos</span>
+      <h2>Nuestros servicios.</h2>
+
+      <div class="servicios">
+        <div class="tarjeta">
+          <h3>01. Branding</h3>
+          <p>
+            Creamos identidades visuales que conectan
+            con las personas.
+          </p>
+        </div>
+
+        <div class="tarjeta">
+          <h3>02. Diseño web</h3>
+          <p>
+            Diseñamos experiencias digitales modernas,
+            funcionales y atractivas.
+          </p>
+        </div>
+
+        <div class="tarjeta">
+          <h3>03. Marketing digital</h3>
+          <p>
+            Estrategias creativas para impulsar
+            tu presencia online.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contacto" id="contacto">
+      <span class="etiqueta">Hablemos</span>
+      <h2>¿Tienes un proyecto?</h2>
+      <p>Hagamos algo increíble juntos.</p>
+      <a href="mailto:contacto@ejemplo.com" class="boton">
+        Contactar →
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Lucea Media. Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>
