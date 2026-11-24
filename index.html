@@ -10,313 +10,357 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 <style>
 :root{
-  /* ====== COLORES ====== */
-  --ink:#16302a;      /* verde muy oscuro */
-  --green:#1f4a3f;
-  --cream:#f6f2ea;
-  --paper:#fffdf9;
-  --gold:#b08d57;
-  --muted:#5f6b66;
-  --line:rgba(22,48,42,.14);
-  --serif:'Playfair Display','Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
-  --sans:'DM Sans',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  --ink:#0f2a24;--green:#1f4a3f;--deep:#0b201b;--cream:#f6f2ea;--paper:#fffdf9;
+  --gold:#c29a5c;--gold2:#e3c38c;--muted:#5f6b66;--line:rgba(15,42,36,.12);
+  --serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--cream);color:var(--ink);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
-a{color:inherit}
-img{max-width:100%;display:block}
-.wrap{width:min(1180px,92vw);margin:0 auto}
-h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.015em;line-height:1.05;margin:0}
-h1 em,h2 em{font-style:italic;color:var(--gold)}
-.num{font:600 12px var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px}
-.num::after{content:'';width:40px;height:1px;background:var(--gold)}
-.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;background:var(--ink);color:#fff;text-decoration:none;font:600 15px var(--sans);border:0;cursor:pointer;transition:transform .2s,background .2s}
-.btn:hover{transform:translateY(-2px);background:var(--green)}
+body{margin:0;background:var(--cream);color:var(--ink);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}img{max-width:100%;display:block}
+.wrap{width:min(1200px,92vw);margin:0 auto}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-height:1.04;margin:0}
+em{font-style:italic;color:var(--gold)}
+.eyebrow{font:600 12px var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:12px}
+.eyebrow::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px rgba(194,154,92,.18)}
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;padding:16px 28px;border-radius:999px;background:var(--ink);color:#fff;text-decoration:none;font:600 15px var(--sans);border:0;cursor:pointer;overflow:hidden;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.btn::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.25) 50%,transparent 70%);transform:translateX(-120%);transition:transform .7s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(15,42,36,.25)}
+.btn:hover::after{transform:translateX(120%)}
+.btn .ar{transition:transform .3s}.btn:hover .ar{transform:translateX(4px)}
 .btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
-.btn.ghost:hover{background:var(--ink);color:#fff}
-.btn.gold{background:var(--gold)}
-section{padding:110px 0}
+.btn.gold{background:linear-gradient(120deg,var(--gold),var(--gold2));color:var(--deep)}
+section{position:relative;padding:130px 0}
+
+/* progreso de scroll */
+#prog{position:fixed;left:0;top:0;height:3px;width:100%;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,var(--gold),var(--gold2));z-index:60}
 
 /* cabecera */
-header{position:sticky;top:0;z-index:20;background:rgba(246,242,234,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:74px}
-.logo{font:400 26px var(--serif);text-decoration:none}
-.logo i{color:var(--gold)}
-.links{display:flex;gap:28px;font:600 14px var(--sans)}
-.links a{text-decoration:none;opacity:.8}
-.links a:hover{opacity:1}
-.nav .btn{padding:11px 20px;font-size:14px}
-.burger{display:none;background:none;border:0;font-size:26px;cursor:pointer;color:var(--ink)}
+header{position:fixed;left:0;right:0;top:0;z-index:50;transition:background .4s,box-shadow .4s,transform .4s}
+header.solid{background:rgba(246,242,234,.82);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
+header.hide{transform:translateY(-100%)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:78px}
+.logo{font:400 27px var(--serif);text-decoration:none}.logo i{color:var(--gold)}
+.links{display:flex;gap:6px;padding:6px;border-radius:999px;background:rgba(255,255,255,.55);box-shadow:inset 0 0 0 1px var(--line)}
+.links a{text-decoration:none;font:600 14px var(--sans);padding:9px 16px;border-radius:999px;transition:background .25s}
+.links a:hover,.links a.on{background:var(--ink);color:#fff}
+.nav .btn{padding:12px 22px;font-size:14px}
+.burger{display:none;background:none;border:0;font-size:28px;cursor:pointer;color:var(--ink)}
 
-/* hero */
-#inicio{padding:90px 0 100px}
-.hero{display:grid;grid-template-columns:1.25fr .9fr;gap:60px;align-items:center}
-.hero h1{font-size:clamp(46px,6.4vw,88px);margin:22px 0 24px}
-.hero p.lead{font-size:20px;color:var(--muted);max-width:560px;margin:0 0 34px}
+/* HERO */
+#inicio{min-height:100vh;padding:150px 0 90px;display:flex;align-items:center;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;pointer-events:none;will-change:transform}
+.b1{width:620px;height:620px;background:radial-gradient(circle,#e8cf9e,transparent 65%);right:-120px;top:-120px;animation:float1 18s ease-in-out infinite}
+.b2{width:520px;height:520px;background:radial-gradient(circle,#bcd3c6,transparent 65%);left:-180px;bottom:-160px;animation:float2 22s ease-in-out infinite}
+@keyframes float1{50%{transform:translate(-80px,60px) scale(1.1)}}
+@keyframes float2{50%{transform:translate(90px,-50px) scale(1.08)}}
+.grain{position:absolute;inset:0;pointer-events:none;opacity:.35;background-image:radial-gradient(rgba(15,42,36,.08) 1px,transparent 1px);background-size:22px 22px;mask-image:linear-gradient(#000,transparent 85%)}
+.hero{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.hero h1{font-size:clamp(50px,7vw,104px);margin:26px 0 26px}
+.rot{display:inline-block;position:relative;color:var(--gold);font-style:italic;perspective:600px}
+.rot span{position:absolute;left:0;top:0;white-space:nowrap;opacity:0;transform:translateY(40%) rotateX(-60deg);transition:opacity .6s,transform .6s cubic-bezier(.2,.8,.2,1)}
+.rot span.on{opacity:1;transform:none;position:relative}
+.rot span.out{opacity:0;transform:translateY(-40%) rotateX(60deg)}
+.lead{font-size:20px;color:var(--muted);max-width:560px;margin:0 0 36px}
 .cta{display:flex;gap:12px;flex-wrap:wrap}
-.trust{display:flex;gap:26px;flex-wrap:wrap;margin-top:40px;font:600 14px var(--sans);color:var(--muted)}
-.trust span::before{content:'✓';color:var(--gold);margin-right:8px}
-.card{background:var(--paper);border:1px solid var(--line);border-radius:26px;padding:32px;box-shadow:0 30px 70px rgba(22,48,42,.08)}
-.cal small{font:600 12px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-.cal .big{font:400 64px/1 var(--serif);margin:14px 0 4px}
-.cal .q{font:600 15px var(--sans);color:var(--green)}
-.cal .bar{height:8px;border-radius:9px;background:#ece5d8;margin:22px 0 10px;overflow:hidden}
-.cal .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),#d3b27c);border-radius:9px}
-.cal ul{list-style:none;padding:0;margin:22px 0 0;border-top:1px solid var(--line)}
-.cal li{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
-.cal li b{font-weight:600}
-.cal .note{font-size:13px;color:var(--muted);margin-top:14px}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:38px}
+.chips span{padding:9px 16px;border-radius:999px;background:rgba(255,255,255,.65);box-shadow:inset 0 0 0 1px var(--line);font:600 13px var(--sans)}
+.chips span b{color:var(--gold);margin-right:6px}
 
-/* servicios */
-.head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:54px}
-.head h2{font-size:clamp(40px,5vw,66px);margin-top:16px;max-width:680px}
-.head p{max-width:400px;color:var(--muted);margin:0}
-.services{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.svc{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:34px;transition:transform .3s,box-shadow .3s}
-.svc:hover{transform:translateY(-6px);box-shadow:0 30px 60px rgba(22,48,42,.09)}
-.svc .ic{width:54px;height:54px;border-radius:16px;background:var(--ink);color:#fff;display:grid;place-items:center;font:400 26px var(--serif);margin-bottom:24px}
-.svc h3{font-size:32px;margin-bottom:12px}
-.svc p{color:var(--muted);margin:0 0 18px}
-.svc ul{margin:0;padding:0;list-style:none}
-.svc li{padding:9px 0;border-top:1px solid var(--line);font-size:15px}
-.svc li::before{content:'—';color:var(--gold);margin-right:10px}
+/* panel de ejemplo */
+.panel{position:relative;background:rgba(255,253,249,.85);backdrop-filter:blur(10px);border-radius:28px;padding:28px;box-shadow:0 40px 90px rgba(15,42,36,.14),inset 0 0 0 1px rgba(255,255,255,.7);transform-style:preserve-3d;transition:transform .2s}
+.panel .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.panel .top b{font:600 14px var(--sans)}
+.badge{font:600 11px var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:#eef3ef;color:var(--green)}
+.badge i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#2fa66b;margin-right:6px;animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.3}}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.kpi{background:#f6f2ea;border-radius:16px;padding:14px}
+.kpi small{display:block;font:600 11px var(--sans);color:var(--muted);letter-spacing:.06em}
+.kpi b{font:500 30px var(--serif)}
+.chart{height:150px;position:relative}
+.chart svg{width:100%;height:100%;overflow:visible}
+.chart .ln{fill:none;stroke:var(--green);stroke-width:3;stroke-linecap:round;stroke-dasharray:900;stroke-dashoffset:900;animation:draw 2.4s .4s cubic-bezier(.4,.1,.2,1) forwards}
+.chart .ar2{fill:url(#g);opacity:0;animation:fade 1s 1.8s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}@keyframes fade{to{opacity:1}}
+.leads{margin-top:16px;display:flex;flex-direction:column;gap:8px;height:120px;overflow:hidden;position:relative}
+.lead-row{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-radius:14px;background:#fff;box-shadow:inset 0 0 0 1px var(--line);font-size:14px;animation:slidein .6s cubic-bezier(.2,.8,.2,1)}
+.lead-row b{font-weight:600}.lead-row span{color:var(--muted);font-size:12px}
+@keyframes slidein{from{opacity:0;transform:translateY(-14px)}}
+.panel .foot{margin-top:14px;font-size:12px;color:var(--muted)}
+.float-card{position:absolute;right:-24px;bottom:-30px;background:var(--ink);color:#fff;border-radius:18px;padding:14px 18px;box-shadow:0 20px 40px rgba(0,0,0,.25);font-size:13px;animation:bob 5s ease-in-out infinite}
+.float-card b{display:block;font:500 22px var(--serif);color:var(--gold2)}
+@keyframes bob{50%{transform:translateY(-10px)}}
 
-/* tarifas */
-#tarifas{background:var(--ink);color:#f1ece2}
-#tarifas .head p{color:#b9c3bd}
-#tarifas .num{color:#d3b27c}#tarifas .num::after{background:#d3b27c}
-.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.plan{border:1px solid rgba(255,255,255,.14);border-radius:24px;padding:34px;background:rgba(255,255,255,.03)}
-.plan.hi{background:#f6f2ea;color:var(--ink);border-color:transparent}
-.plan .tag{font:600 12px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#d3b27c}
-.plan.hi .tag{color:var(--gold)}
-.plan h3{font-size:34px;margin:12px 0 4px}
-.plan .who{font-size:15px;opacity:.75;margin-bottom:22px}
-.price{font:400 58px/1 var(--serif)}
-.price small{font:500 15px var(--sans);opacity:.7}
-.plan ul{list-style:none;padding:0;margin:24px 0 28px}
-.plan li{padding:8px 0;font-size:15px}
-.plan li::before{content:'✓';color:#d3b27c;margin-right:10px}
-.plan.hi li::before{color:var(--gold)}
-.plan .btn{width:100%;justify-content:center}
-.plan:not(.hi) .btn{background:#f6f2ea;color:var(--ink)}
-.iva{margin-top:20px;font-size:14px;color:#b9c3bd}
+/* marquee */
+.marq{background:var(--ink);color:#f1ece2;padding:22px 0;overflow:hidden;white-space:nowrap}
+.marq div{display:inline-flex;gap:46px;animation:mq 32s linear infinite;font:400 26px var(--serif)}
+.marq span::after{content:'✦';color:var(--gold);margin-left:46px;font-size:18px;vertical-align:middle}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* encabezados de sección */
+.head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:60px}
+.head h2{font-size:clamp(42px,5.4vw,74px);margin-top:18px;max-width:760px}
+.head p{max-width:390px;color:var(--muted);margin:0}
+
+/* para quién */
+.for{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.for div{position:relative;padding:34px;border-radius:26px;background:var(--paper);box-shadow:inset 0 0 0 1px var(--line);overflow:hidden}
+.for div::before{content:attr(data-n);position:absolute;right:20px;top:4px;font:400 96px var(--serif);color:rgba(194,154,92,.16)}
+.for h3{font-size:28px;margin-bottom:10px}
+.for p{margin:0;color:var(--muted);font-size:15px}
+
+/* servicios oscuro */
+#servicios{background:var(--deep);color:#efe9de;overflow:hidden}
+#servicios .head p{color:#a9b5af}
+#servicios .glow{position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(194,154,92,.22),transparent 60%);left:50%;top:10%;transform:translateX(-50%);pointer-events:none}
+.svcs{position:relative;display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.svc{position:relative;padding:38px;border-radius:28px;background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);overflow:hidden;transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
+.svc::before{content:'';position:absolute;inset:0;background:radial-gradient(400px circle at var(--mx,50%) var(--my,50%),rgba(227,195,140,.16),transparent 45%);opacity:0;transition:opacity .4s}
+.svc:hover{transform:translateY(-6px);box-shadow:inset 0 0 0 1px rgba(227,195,140,.45)}
+.svc:hover::before{opacity:1}
+.svc .ic{width:60px;height:60px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(140deg,var(--gold),var(--gold2));color:var(--deep);margin-bottom:26px}
+.svc .ic svg{width:28px;height:28px}
+.svc h3{font-size:34px;margin-bottom:12px}
+.svc p{color:#b7c2bc;margin:0 0 20px}
+.svc ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.svc li{font-size:13px;font-weight:600;padding:8px 13px;border-radius:999px;background:rgba(255,255,255,.07)}
 
 /* calculadora */
-.calc{margin-top:56px;display:grid;grid-template-columns:1.2fr .8fr;gap:22px;background:#f6f2ea;color:var(--ink);border-radius:28px;padding:40px}
-.calc h3{font-size:36px;margin-bottom:6px}
-.calc p.sub{color:var(--muted);margin:0 0 26px}
-.field{margin-bottom:24px}
-.field label{display:flex;justify-content:space-between;font:600 14px var(--sans);margin-bottom:10px}
-.seg{display:flex;gap:8px;flex-wrap:wrap}
-.seg button{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:10px 18px;font:600 14px var(--sans);cursor:pointer;color:var(--ink)}
-.seg button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-input[type=range]{width:100%;accent-color:var(--green)}
-.res{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:30px;display:flex;flex-direction:column;justify-content:center}
-.res small{font:600 12px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-.res .total{font:400 70px/1 var(--serif);margin:12px 0 6px}
-.res .total span{font:500 18px var(--sans);color:var(--muted)}
-.res .det{font-size:14px;color:var(--muted);margin-bottom:22px}
+.roi{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:32px;overflow:hidden;box-shadow:0 40px 90px rgba(15,42,36,.12)}
+.roi .l{background:var(--paper);padding:50px}
+.roi .r{background:linear-gradient(150deg,var(--green),var(--deep));color:#f1ece2;padding:50px;display:flex;flex-direction:column;justify-content:center}
+.roi h2{font-size:clamp(36px,4vw,54px);margin:16px 0 14px}
+.roi p.sub{color:var(--muted);margin:0 0 30px}
+.field{margin-bottom:26px}
+.field label{display:flex;justify-content:space-between;font:600 14px var(--sans);margin-bottom:12px}
+.field label b{font:500 22px var(--serif);color:var(--green)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:9px;background:linear-gradient(90deg,var(--gold) var(--p,30%),#e6dfd2 var(--p,30%));outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--ink);border:4px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,.25);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--ink);border:4px solid #fff;cursor:pointer}
+.roi .r small{font:600 12px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--gold2)}
+.roi .big{font:400 clamp(56px,6vw,86px)/1 var(--serif);margin:16px 0 8px}
+.roi .r .d{color:#b9c6bf;font-size:15px}
+.roi .row{display:flex;justify-content:space-between;padding:16px 0;border-top:1px solid rgba(255,255,255,.14);margin-top:26px}
+.roi .row b{font:500 26px var(--serif);color:var(--gold2)}
+.roi .note{font-size:13px;color:#93a39b;margin-top:14px}
 
-/* por qué */
-.why{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:10px}
-.why div{border-top:1.5px solid var(--ink);padding-top:22px}
-.why h3{font-size:26px;margin-bottom:10px}
-.why p{color:var(--muted);margin:0;font-size:15px}
-
-/* nosotros */
+/* equipo */
 .team{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.person{background:var(--paper);border:1px solid var(--line);border-radius:24px;overflow:hidden}
-.ph{aspect-ratio:4/4.4;background:#e7dfd1;display:grid;place-items:center;font:400 54px var(--serif);color:var(--gold);overflow:hidden}
-.ph img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
-.person div.t{padding:22px 26px}
+.person{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/5;background:#e7dfd1}
+.person img{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;object-position:center 18%;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.person:hover img{transform:scale(1.06)}
+.person .t{position:absolute;z-index:2;left:14px;right:14px;bottom:14px;padding:18px 22px;border-radius:20px;background:rgba(255,253,249,.82);backdrop-filter:blur(10px)}
 .person h3{font-size:28px}
-.person p{margin:4px 0 0;color:var(--muted);font-size:15px}
+.person p{margin:2px 0 0;color:var(--muted);font-size:14px}
+.person .ini{position:absolute;inset:0;display:grid;place-items:center;font:400 80px var(--serif);color:var(--gold)}
 
 /* proceso */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;counter-reset:s}
-.step{position:relative;padding:30px;border-radius:24px;background:var(--paper);border:1px solid var(--line)}
-.step::before{counter-increment:s;content:'0' counter(s);font:400 52px var(--serif);color:var(--gold);display:block;margin-bottom:16px}
-.step h3{font-size:26px;margin-bottom:10px}
+.steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.track{position:absolute;left:0;right:0;top:34px;height:2px;background:var(--line)}
+.track i{position:absolute;inset:0;background:linear-gradient(90deg,var(--gold),var(--gold2));transform-origin:left;transform:scaleX(var(--s,0))}
+.step{position:relative;padding-top:80px}
+.step .dot{position:absolute;top:14px;left:0;width:42px;height:42px;border-radius:50%;background:var(--cream);box-shadow:inset 0 0 0 2px var(--line);display:grid;place-items:center;font:500 16px var(--serif);transition:background .4s,color .4s,box-shadow .4s}
+.step.lit .dot{background:var(--ink);color:#fff;box-shadow:0 0 0 6px rgba(194,154,92,.25)}
+.step h3{font-size:28px;margin-bottom:10px}
 .step p{margin:0;color:var(--muted);font-size:15px}
 
 /* faq */
-.faq{max-width:860px}
-details{border-bottom:1px solid var(--line);padding:22px 0}
-summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;font:400 25px var(--serif)}
+.faqw{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px}
+details{border-bottom:1px solid var(--line);padding:24px 0}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;font:400 24px var(--serif)}
 summary::-webkit-details-marker{display:none}
-summary::after{content:'+';font:300 30px var(--sans);color:var(--gold);transition:transform .25s}
-details[open] summary::after{transform:rotate(45deg)}
-details p{color:var(--muted);margin:14px 0 0;max-width:720px}
+summary::after{content:'+';flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--paper);box-shadow:inset 0 0 0 1px var(--line);font:400 22px var(--sans);color:var(--gold);transition:transform .3s,background .3s}
+details[open] summary::after{transform:rotate(45deg);background:var(--ink);color:#fff}
+details p{color:var(--muted);margin:14px 0 0;max-width:640px}
 
 /* contacto */
-#contacto{padding-bottom:120px}
-.contact{background:var(--ink);color:#f1ece2;border-radius:32px;padding:70px;display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:start}
-.contact-form{background:#fff;border-radius:20px;padding:10px;min-height:400px}
-.contact h2{font-size:clamp(40px,5vw,64px);margin:16px 0 18px}
-.contact h2 em{color:#d3b27c}
-.contact p{color:#b9c3bd;margin:0}
-.contact .num{color:#d3b27c}.contact .num::after{background:#d3b27c}
-.contact .opts{display:flex;flex-direction:column;gap:14px}
-.contact .btn{justify-content:center;padding:18px 26px;font-size:16px}
-.contact .btn.light{background:#f6f2ea;color:var(--ink)}
-.contact .btn.line{background:transparent;color:#f1ece2;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35)}
+#contacto{padding-bottom:110px}
+.contact{position:relative;background:var(--deep);color:#f1ece2;border-radius:36px;padding:70px;display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start;overflow:hidden}
+.contact::before{content:'';position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(194,154,92,.28),transparent 60%);left:-250px;top:-250px}
+.contact>*{position:relative}
+.contact h2{font-size:clamp(42px,5vw,70px);margin:18px 0 18px}
+.contact em{color:var(--gold2)}
+.contact p{color:#b9c6bf;margin:0 0 28px}
+.contact .eyebrow{color:var(--gold2)}
+.contact-form{background:#fff;border-radius:22px;padding:10px;min-height:420px}
 
-footer{border-top:1px solid var(--line);padding:34px 0;font-size:14px;color:var(--muted)}
+footer{padding:36px 0 46px;font-size:14px;color:var(--muted)}
 footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 footer a{margin-left:18px}
 
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s}
-.reveal.in{opacity:1;transform:none}
+/* animaciones de entrada */
+.rv{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(.2,.8,.2,1),transform 1s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+.split .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em}
+.split .w>span{display:inline-block;transform:translateY(105%);transition:transform 1s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.split.in .w>span{transform:none}
 
-@media (max-width:980px){
+@media (max-width:1000px){
   .links{display:none}
-  .links.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;gap:0;background:var(--cream);border-bottom:1px solid var(--line)}
-  .links.open a{padding:16px 4vw;border-top:1px solid var(--line)}
-  .burger{display:block}
-  .nav .btn{display:none}
-  section{padding:80px 0}
-  .hero,.calc,.contact{grid-template-columns:1fr}
-  .services,.plans,.team{grid-template-columns:1fr}
-  .why,.steps{grid-template-columns:1fr 1fr}
+  .links.open{display:flex;position:absolute;top:78px;left:4vw;right:4vw;flex-direction:column;border-radius:22px;background:var(--paper);padding:10px;box-shadow:0 20px 50px rgba(0,0,0,.12)}
+  .burger{display:block}.nav .btn{display:none}
+  section{padding:90px 0}
+  #inicio{padding-top:120px}
+  .hero,.roi,.contact,.faqw{grid-template-columns:1fr}
+  .for,.svcs,.team{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr;row-gap:10px}.track{display:none}
   .head{flex-direction:column;align-items:flex-start}
-  .contact{padding:40px 26px}
-  .calc{padding:26px}
+  .float-card{right:10px;bottom:-26px}
+  .roi .l,.roi .r,.contact{padding:34px 24px}
+  .person{aspect-ratio:4/4.3}
 }
-@media (max-width:560px){.why,.steps{grid-template-columns:1fr}.hero h1{font-size:44px}}
-@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
-
-.svc4{grid-template-columns:repeat(2,1fr)}
-.roi .row{display:flex;justify-content:space-between;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
-.roi .row b{font:400 26px var(--serif)}
-.roi input[type=range]{margin:4px 0 6px}
-.roi label{display:flex;justify-content:space-between;font:600 13px var(--sans);margin-top:14px}
-.roi .big2{font:400 54px/1 var(--serif);margin:16px 0 4px;color:var(--green)}
-.for{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.for div{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:28px}
-.for h3{font-size:25px;margin-bottom:8px}
-.for p{margin:0;color:var(--muted);font-size:15px}
-@media (max-width:980px){.svc4,.for{grid-template-columns:1fr}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}.hero h1{font-size:48px}.kpi b{font-size:24px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.split .w>span{transform:none}.chart .ln{stroke-dashoffset:0}.chart .ar2{opacity:1}}
 </style>
 </head>
 <body>
-<header>
+<div id="prog"></div>
+
+<header id="hdr">
   <div class="wrap nav">
     <a class="logo" href="#inicio">Lucea <i>Media</i></a>
     <nav class="links" id="links">
-      <a href="#servicios">Servicios</a><a href="#nosotros">Nosotros</a><a href="#proceso">Proceso</a><a href="#contacto">Contacto</a>
+      <a href="#servicios">Servicios</a><a href="#calculadora">Calculadora</a><a href="#nosotros">Nosotros</a><a href="#proceso">Proceso</a><a href="#contacto">Contacto</a>
     </nav>
-    <a class="btn" href="https://api.leadconnectorhq.com/widget/booking/J47klrLIP7jcQ3rkrOHu" target="_blank" rel="noopener">Reservar llamada</a>
+    <a class="btn" href="https://api.leadconnectorhq.com/widget/booking/J47klrLIP7jcQ3rkrOHu" target="_blank" rel="noopener">Reservar llamada <span class="ar">→</span></a>
     <button class="burger" id="burger" aria-label="Abrir menú">☰</button>
   </div>
 </header>
+
 <main>
 <section id="inicio">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="grain"></div>
   <div class="wrap hero">
     <div>
-      <div class="num">Marketing para asesorías y gestorías</div>
-      <h1>Más clientes <em>sociedad</em> para tu asesoría.</h1>
-      <p class="lead">Ayudamos a asesorías y gestorías a captar empresas (SL y SA) que buscan quien les lleve la contabilidad y la fiscalidad. Campañas, web y marca pensadas para un solo objetivo: que te llamen.</p>
-      <div class="cta">
-        <a class="btn" href="https://api.leadconnectorhq.com/widget/booking/J47klrLIP7jcQ3rkrOHu" target="_blank" rel="noopener">Reservar una conversación →</a>
+      <div class="eyebrow rv">Marketing para asesorías y gestorías</div>
+      <h1>Más clientes<br><span class="rot" id="rot"><span class="on">sociedad</span><span>SL</span><span>SA</span><span>empresa</span></span><br>para tu asesoría.</h1>
+      <p class="lead rv" style="--d:.15s">Ayudamos a asesorías y gestorías a captar empresas que buscan quien les lleve la contabilidad y la fiscalidad. Campañas, web y marca pensadas para un solo objetivo: que te llamen.</p>
+      <div class="cta rv" style="--d:.3s">
+        <a class="btn" href="https://api.leadconnectorhq.com/widget/booking/J47klrLIP7jcQ3rkrOHu" target="_blank" rel="noopener">Reservar una conversación <span class="ar">→</span></a>
         <a class="btn ghost" href="#servicios">Ver servicios</a>
       </div>
-      <div class="trust"><span>Especializados en asesorías</span><span>Meta Ads y Google Ads</span><span>Web, redes y branding</span></div>
+      <div class="chips rv" style="--d:.45s"><span><b>✦</b>Especializados en asesorías</span><span><b>✦</b>Meta Ads y Google Ads</span><span><b>✦</b>Web, redes y branding</span></div>
     </div>
-    <aside class="card roi reveal">
-      <div class="cal"><small>¿Cuánto vale un cliente sociedad?</small></div>
-      <label>Cuota media mensual por sociedad <b id="qv">150 €</b></label>
-      <input type="range" id="q" min="60" max="500" step="10" value="150">
-      <label>Nuevas sociedades al mes <b id="nv">3</b></label>
-      <input type="range" id="n" min="1" max="15" step="1" value="3">
-      <div class="big2" id="tot">—</div>
-      <div style="font-size:14px;color:var(--muted)">de facturación recurrente al año que suman los clientes captados en 12 meses</div>
-      <div class="row" style="margin-top:14px"><span>Ingreso anual por cada sociedad</span><b id="per">—</b></div>
-      <p class="note" style="font-size:13px;color:var(--muted);margin:12px 0 0">Cálculo orientativo con tus propias cifras. No es una promesa de resultados.</p>
-    </aside>
+
+    <div class="rv" style="--d:.25s;position:relative">
+      <div class="panel" id="panel" aria-label="Panel de campaña de ejemplo">
+        <div class="top"><b>Campaña · Asesoría</b><span class="badge"><i></i>En directo</span></div>
+        <div class="kpis">
+          <div class="kpi"><small>CONTACTOS</small><b id="k1">0</b></div>
+          <div class="kpi"><small>LLAMADAS</small><b id="k2">0</b></div>
+          <div class="kpi"><small>SOCIEDADES</small><b id="k3">0</b></div>
+        </div>
+        <div class="chart"><svg viewBox="0 0 400 150" preserveAspectRatio="none">
+          <defs><linearGradient id="g" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#c29a5c" stop-opacity=".35"/><stop offset="1" stop-color="#c29a5c" stop-opacity="0"/></linearGradient></defs>
+          <path class="ar2" d="M0 130 C40 125 60 110 90 112 S150 95 180 90 S240 70 270 62 S330 40 360 30 L400 18 L400 150 L0 150Z"/>
+          <path class="ln" d="M0 130 C40 125 60 110 90 112 S150 95 180 90 S240 70 270 62 S330 40 360 30 L400 18"/>
+        </svg></div>
+        <div class="leads" id="leads"></div>
+        <div class="foot">Panel ilustrativo con datos de ejemplo.</div>
+      </div>
+      <div class="float-card"><b>SL · Valencia</b>Nuevo contacto</div>
+    </div>
   </div>
 </section>
 
-<section style="padding-top:20px">
+<div class="marq" aria-hidden="true"><div>
+  <span>Meta Ads</span><span>Google Ads</span><span>Landing pages</span><span>Webs para asesorías</span><span>Redes sociales</span><span>Branding</span>
+  <span>Meta Ads</span><span>Google Ads</span><span>Landing pages</span><span>Webs para asesorías</span><span>Redes sociales</span><span>Branding</span>
+</div></div>
+
+<section>
   <div class="wrap">
-    <div class="head reveal"><div><div class="num">Para quién</div><h2>Trabajamos con <em>asesorías</em> que quieren crecer.</h2></div></div>
+    <div class="head">
+      <div><div class="eyebrow rv">Para quién</div><h2 class="split">Trabajamos con <em>asesorías</em> que quieren crecer.</h2></div>
+    </div>
     <div class="for">
-      <div class="reveal"><h3>Asesorías y gestorías</h3><p>Despachos que llevan contabilidad, fiscalidad o laboral y quieren más empresas en cartera.</p></div>
-      <div class="reveal"><h3>Que buscan sociedades</h3><p>Clientes SL y SA, con cuotas mensuales más altas y relaciones de largo plazo.</p></div>
-      <div class="reveal"><h3>Sin depender del boca a boca</h3><p>Un sistema de captación que trae contactos cada mes, no solo cuando llega una recomendación.</p></div>
+      <div class="rv" data-n="01"><h3>Asesorías y gestorías</h3><p>Despachos que llevan contabilidad, fiscalidad o laboral y quieren más empresas en cartera.</p></div>
+      <div class="rv" data-n="02" style="--d:.1s"><h3>Que buscan sociedades</h3><p>Clientes SL y SA, con cuotas mensuales más altas y relaciones de largo plazo.</p></div>
+      <div class="rv" data-n="03" style="--d:.2s"><h3>Sin depender del boca a boca</h3><p>Un sistema de captación que trae contactos cada mes, no solo cuando llega una recomendación.</p></div>
     </div>
   </div>
 </section>
 
 <section id="servicios">
+  <div class="glow"></div>
   <div class="wrap">
-    <div class="head reveal">
-      <div><div class="num">01 · Servicios</div><h2>Todo lo que necesita tu asesoría para <em>atraer empresas</em>.</h2></div>
-      <p>Puedes contratar un servicio o combinarlos. Todos van al mismo objetivo: más clientes sociedad.</p>
+    <div class="head">
+      <div><div class="eyebrow rv">01 · Servicios</div><h2 class="split">Todo lo que necesita tu asesoría para <em>atraer empresas</em>.</h2></div>
+      <p class="rv">Puedes contratar un servicio o combinarlos. Todos van al mismo objetivo: más clientes sociedad.</p>
     </div>
-    <div class="services svc4">
-      <article class="svc reveal"><div class="ic">A</div><h3>Captación con Meta Ads y Google Ads</h3>
-        <p>Campañas dirigidas a empresarios y administradores que buscan asesoría para su sociedad.</p>
-        <ul><li>Estrategia y segmentación por sector y zona</li><li>Anuncios y textos pensados para asesorías</li><li>Formularios y seguimiento de contactos</li><li>Optimización e informes mensuales</li></ul></article>
-      <article class="svc reveal"><div class="ic">W</div><h3>Webs y landing pages</h3>
-        <p>Páginas claras que explican tus servicios y convierten visitas en solicitudes de presupuesto.</p>
-        <ul><li>Web corporativa para tu asesoría</li><li>Landing pages para cada campaña</li><li>Formularios y reserva de llamadas</li><li>Pensadas para móvil y rápidas</li></ul></article>
-      <article class="svc reveal"><div class="ic">R</div><h3>Gestión de redes sociales</h3>
-        <p>Contenido útil para empresas que muestra que tu despacho sabe de lo que habla.</p>
-        <ul><li>Calendario de publicaciones</li><li>Contenido sobre plazos, impuestos y novedades</li><li>Diseño de publicaciones y vídeos cortos</li><li>LinkedIn, Instagram y Facebook</li></ul></article>
-      <article class="svc reveal"><div class="ic">B</div><h3>Branding</h3>
-        <p>Una imagen profesional y coherente que transmite confianza desde el primer contacto.</p>
-        <ul><li>Logotipo e identidad visual</li><li>Colores, tipografías y plantillas</li><li>Mensaje y propuesta de valor</li><li>Materiales para presentaciones y propuestas</li></ul></article>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="head reveal"><div><div class="num">Por qué Lucea</div><h2>Hablamos el idioma de <em>tu sector</em>.</h2></div></div>
-    <div class="why">
-      <div class="reveal"><h3>Solo asesorías</h3><p>Nos centramos en un sector, así que conocemos a tus clientes y lo que buscan.</p></div>
-      <div class="reveal"><h3>Un objetivo claro</h3><p>Medimos contactos de empresas, no «me gusta».</p></div>
-      <div class="reveal"><h3>Todo en un equipo</h3><p>Anuncios, web, contenido y marca coordinados, sin cinco proveedores distintos.</p></div>
-      <div class="reveal"><h3>Datos cada mes</h3><p>Sabes cuánto inviertes y cuántos contactos llegan.</p></div>
+    <div class="svcs">
+      <article class="svc rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></div>
+        <h3>Captación con Meta Ads y Google Ads</h3><p>Campañas dirigidas a empresarios y administradores que buscan asesoría para su sociedad.</p>
+        <ul><li>Segmentación por sector y zona</li><li>Anuncios para asesorías</li><li>Seguimiento de contactos</li><li>Informes mensuales</li></ul></article>
+      <article class="svc rv" style="--d:.1s"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18M8 21h8M12 18v3"/></svg></div>
+        <h3>Webs y landing pages</h3><p>Páginas claras que explican tus servicios y convierten visitas en solicitudes de presupuesto.</p>
+        <ul><li>Web corporativa</li><li>Landing por campaña</li><li>Formularios y reservas</li><li>Rápidas y para móvil</li></ul></article>
+      <article class="svc rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg></div>
+        <h3>Gestión de redes sociales</h3><p>Contenido útil para empresas que muestra que tu despacho sabe de lo que habla.</p>
+        <ul><li>Calendario de publicaciones</li><li>Plazos e impuestos</li><li>Diseño y vídeos cortos</li><li>LinkedIn, Instagram, Facebook</li></ul></article>
+      <article class="svc rv" style="--d:.1s"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.6L20 9.3l-4 4 1 5.7-5-2.8-5 2.8 1-5.7-4-4 5.4-.7z"/></svg></div>
+        <h3>Branding</h3><p>Una imagen profesional y coherente que transmite confianza desde el primer contacto.</p>
+        <ul><li>Logotipo e identidad</li><li>Colores y tipografías</li><li>Mensaje y propuesta de valor</li><li>Plantillas y presentaciones</li></ul></article>
     </div>
   </div>
 </section>
 
-<section id="nosotros">
+<section id="calculadora">
   <div class="wrap">
-    <div class="head reveal">
-      <div><div class="num">02 · Nosotros</div><h2>El equipo detrás de <em>tus campañas</em>.</h2></div>
-      <p>Un equipo pequeño que trabaja de cerca con cada asesoría.</p>
+    <div class="roi rv">
+      <div class="l">
+        <div class="eyebrow">Calculadora</div>
+        <h2>¿Cuánto vale un <em>cliente sociedad</em>?</h2>
+        <p class="sub">Mueve las barras con las cifras de tu asesoría.</p>
+        <div class="field"><label>Cuota media mensual por sociedad <b id="qv">150 €</b></label><input type="range" id="q" min="60" max="500" step="10" value="150"></div>
+        <div class="field"><label>Nuevas sociedades al mes <b id="nv">3</b></label><input type="range" id="n" min="1" max="15" step="1" value="3"></div>
+      </div>
+      <div class="r">
+        <small>Facturación recurrente al año</small>
+        <div class="big" id="tot">0 €</div>
+        <div class="d">que suman las sociedades captadas en 12 meses</div>
+        <div class="row"><span>Ingreso anual por cada sociedad</span><b id="per">0 €</b></div>
+        <div class="note">Cálculo orientativo con tus propias cifras. No es una promesa de resultados.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="nosotros" style="padding-top:40px">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="eyebrow rv">02 · Nosotros</div><h2 class="split">El equipo detrás de <em>tus campañas</em>.</h2></div>
+      <p class="rv">Un equipo pequeño que trabaja de cerca con cada asesoría.</p>
     </div>
     <div class="team">
-      <div class="person reveal"><div class="ph"><img src="joanna.png" alt="Joanna" onerror="this.replaceWith('J')"></div><div class="t"><h3>Joanna</h3><p>Estrategia y comunicación</p></div></div>
-      <div class="person reveal"><div class="ph"><img src="Aleksandra.png" alt="Alexandra" onerror="this.replaceWith('A')"></div><div class="t"><h3>Alexandra</h3><p>Diseño visual y contenido</p></div></div>
-      <div class="person reveal"><div class="ph"><img src="Retrato%20profesional%20con%20traje%20azul%20marino.png" alt="Alex" onerror="this.replaceWith('A')"></div><div class="t"><h3>Alex</h3><p>Estrategia digital y captación de clientes</p></div></div>
+      <div class="person rv"><span class="ini">J</span><img src="joanna.png" alt="Joanna" onerror="this.remove()"><div class="t"><h3>Joanna</h3><p>Estrategia y comunicación</p></div></div>
+      <div class="person rv" style="--d:.1s"><span class="ini">A</span><img src="Aleksandra.png" alt="Alexandra" onerror="this.remove()"><div class="t"><h3>Alexandra</h3><p>Diseño visual y contenido</p></div></div>
+      <div class="person rv" style="--d:.2s"><span class="ini">A</span><img src="Retrato%20profesional%20con%20traje%20azul%20marino.png" alt="Alex" onerror="this.remove()"><div class="t"><h3>Alex</h3><p>Estrategia digital y captación de clientes</p></div></div>
     </div>
   </div>
 </section>
 
-<section id="proceso">
+<section id="proceso" style="padding-top:60px">
   <div class="wrap">
-    <div class="head reveal">
-      <div><div class="num">03 · Proceso</div><h2>Cómo trabajamos <em>contigo</em>.</h2></div>
-      <p>Cuatro pasos para pasar de depender del boca a boca a recibir contactos de empresas cada mes.</p>
+    <div class="head">
+      <div><div class="eyebrow rv">03 · Proceso</div><h2 class="split">Cómo trabajamos <em>contigo</em>.</h2></div>
+      <p class="rv">Cuatro pasos para pasar de depender del boca a boca a recibir contactos de empresas cada mes.</p>
     </div>
-    <div class="steps">
-      <div class="step reveal"><h3>Análisis</h3><p>Revisamos tu asesoría, tus servicios, tu web y el tipo de sociedad que quieres captar.</p></div>
-      <div class="step reveal"><h3>Estrategia</h3><p>Definimos canales, mensajes, presupuesto y objetivos de contactos.</p></div>
-      <div class="step reveal"><h3>Implementación</h3><p>Lanzamos campañas, landing pages y contenido.</p></div>
-      <div class="step reveal"><h3>Optimización</h3><p>Medimos cada mes y ajustamos para conseguir más contactos con el mismo presupuesto.</p></div>
+    <div class="steps" id="steps">
+      <div class="track"><i id="trk"></i></div>
+      <div class="step"><span class="dot">1</span><h3>Análisis</h3><p>Revisamos tu asesoría, tus servicios, tu web y el tipo de sociedad que quieres captar.</p></div>
+      <div class="step"><span class="dot">2</span><h3>Estrategia</h3><p>Definimos canales, mensajes, presupuesto y objetivos de contactos.</p></div>
+      <div class="step"><span class="dot">3</span><h3>Implementación</h3><p>Lanzamos campañas, landing pages y contenido.</p></div>
+      <div class="step"><span class="dot">4</span><h3>Optimización</h3><p>Medimos cada mes y ajustamos para conseguir más contactos con el mismo presupuesto.</p></div>
     </div>
   </div>
 </section>
 
-<section>
-  <div class="wrap">
-    <div class="head reveal"><div><div class="num">Preguntas frecuentes</div><h2>Lo que <em>nos suelen preguntar</em>.</h2></div></div>
-    <div class="faq">
+<section style="padding-top:60px">
+  <div class="wrap faqw">
+    <div><div class="eyebrow rv">Preguntas frecuentes</div><h2 class="split" style="font-size:clamp(42px,5vw,66px);margin-top:18px">Lo que <em>nos suelen preguntar</em>.</h2></div>
+    <div class="rv">
       <details><summary>¿Trabajáis solo con asesorías y gestorías?</summary><p>Sí. Nos especializamos en despachos que llevan la contabilidad, la fiscalidad o el área laboral de empresas.</p></details>
       <details><summary>¿Qué presupuesto de publicidad necesito?</summary><p>Depende de tu zona y de cuántas sociedades quieras captar. Lo vemos en la primera conversación y te proponemos una cifra realista.</p></details>
       <details><summary>¿Necesito tener ya una web?</summary><p>No. Si no tienes web o la tuya no convierte, creamos una web o landing page pensada para captar empresas.</p></details>
@@ -325,14 +369,14 @@ footer a{margin-left:18px}
   </div>
 </section>
 
-<section id="contacto">
+<section id="contacto" style="padding-top:40px">
   <div class="wrap">
-    <div class="contact reveal">
+    <div class="contact rv">
       <div>
-        <div class="num">04 · Contacto</div>
+        <div class="eyebrow">04 · Contacto</div>
         <h2>¿Quieres más clientes <em>sociedad</em>?</h2>
         <p>Rellena el formulario y te contactamos para ver cómo conseguir más empresas para tu asesoría. Si lo prefieres, reserva directamente una conversación.</p>
-        <div class="opts" style="margin-top:28px"><a class="btn light" href="https://api.leadconnectorhq.com/widget/booking/J47klrLIP7jcQ3rkrOHu" target="_blank" rel="noopener">Reservar una conversación →</a></div>
+        <a class="btn gold" href="https://api.leadconnectorhq.com/widget/booking/J47klrLIP7jcQ3rkrOHu" target="_blank" rel="noopener">Reservar una conversación <span class="ar">→</span></a>
       </div>
       <div class="contact-form">
 <iframe
@@ -357,23 +401,75 @@ footer a{margin-left:18px}
   </div>
 </section>
 </main>
+
 <footer>
   <div class="wrap">
     <span>© <span id="yr">2026</span> Lucea Media · Marketing para asesorías y gestorías</span>
     <span><a href="politica-de-privacidad.html">Política de privacidad</a><a href="aviso-legal.html">Aviso legal</a></span>
   </div>
 </footer>
+
 <script>
 const $=id=>document.getElementById(id);
-const fmt=n=>String(n).replace(/\B(?=(\d{3})+(?!\d))/g,'.')+' €';
-function roi(){const q=+$('q').value,n=+$('n').value;$('qv').textContent=fmt(q);$('nv').textContent=n;
-  $('per').textContent=fmt(q*12);$('tot').textContent=fmt(q*12*n*12);}
-$('q').oninput=roi;$('n').oninput=roi;roi();
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fmt=n=>String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,'.')+' €';
 $('yr').textContent=new Date().getFullYear();
+
+/* titulares que se revelan palabra a palabra */
+document.querySelectorAll('.split').forEach(h=>{
+  let i=0;const walk=n=>{[...n.childNodes].forEach(c=>{
+    if(c.nodeType===3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(w=>{
+      if(!w)return;if(/^\s+$/.test(w)){f.append(w);return}
+      const o=document.createElement('span');o.className='w';const s=document.createElement('span');s.textContent=w;s.style.setProperty('--d',(i++*0.06)+'s');o.append(s);f.append(o)});c.replaceWith(f)}
+    else walk(c)})};walk(h)});
+
+/* aparición al hacer scroll */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv,.split').forEach(el=>io.observe(el));
+
+/* palabra que rota en el titular */
+const rs=[...$('rot').children];let ri=0;
+if(!reduce)setInterval(()=>{const a=rs[ri];a.classList.add('out');a.classList.remove('on');ri=(ri+1)%rs.length;const b=rs[ri];b.classList.remove('out');b.classList.add('on');setTimeout(()=>a.classList.remove('out'),650)},2400);
+
+/* contadores del panel de ejemplo */
+function count(el,to,dur){const t0=performance.now();const f=t=>{const p=Math.min(1,(t-t0)/dur);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)}
+setTimeout(()=>{count($('k1'),48,1800);count($('k2'),17,1800);count($('k3'),6,1800)},500);
+
+/* contactos de ejemplo que van entrando */
+const L=[['SL · Valencia','Contabilidad y fiscal'],['SL · Madrid','Cambio de gestoría'],['SA · Sevilla','Fiscal y laboral'],['SL · Bilbao','Contabilidad'],['SL · Málaga','Nóminas y fiscal'],['SL · Zaragoza','Alta de sociedad']];
+let li=0;function addLead(){const r=document.createElement('div');r.className='lead-row';r.innerHTML=`<b>${L[li][0]}</b><span>${L[li][1]}</span>`;const box=$('leads');box.prepend(r);while(box.children.length>3)box.lastChild.remove();li=(li+1)%L.length}
+addLead();setTimeout(addLead,700);setTimeout(addLead,1400);if(!reduce)setInterval(addLead,2600);
+
+/* inclinación 3D del panel con el ratón */
+const pn=$('panel');
+if(!reduce&&matchMedia('(hover:hover)').matches){addEventListener('mousemove',e=>{const r=pn.getBoundingClientRect();const x=(e.clientX-(r.left+r.width/2))/innerWidth,y=(e.clientY-(r.top+r.height/2))/innerHeight;pn.style.transform=`perspective(1200px) rotateY(${x*8}deg) rotateX(${-y*8}deg)`})}
+
+/* brillo que sigue al ratón en servicios */
+document.querySelectorAll('.svc').forEach(c=>c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')}));
+
+/* calculadora con número animado */
+let shown=0,target=0,raf;
+function anim(){shown+=(target-shown)*.15;if(Math.abs(target-shown)<1)shown=target;$('tot').textContent=fmt(shown);if(shown!==target)raf=requestAnimationFrame(anim)}
+function roi(){const q=+$('q').value,n=+$('n').value;
+  [$('q'),$('n')].forEach(r=>r.style.setProperty('--p',((r.value-r.min)/(r.max-r.min)*100)+'%'));
+  $('qv').textContent=fmt(q);$('nv').textContent=n;$('per').textContent=fmt(q*12);
+  target=q*12*n*12;cancelAnimationFrame(raf);anim()}
+$('q').oninput=roi;$('n').oninput=roi;
+new IntersectionObserver((e,o)=>{if(e[0].isIntersecting){roi();o.disconnect()}},{threshold:.3}).observe($('calculadora'));
+
+/* cabecera, barra de progreso, línea del proceso y menú activo */
+let lastY=0;const secs=['servicios','calculadora','nosotros','proceso','contacto'].map(id=>$(id));
+function onScroll(){const y=scrollY,h=document.documentElement.scrollHeight-innerHeight;
+  $('prog').style.transform=`scaleX(${y/h})`;
+  $('hdr').classList.toggle('solid',y>30);$('hdr').classList.toggle('hide',y>lastY&&y>400&&!$('links').classList.contains('open'));lastY=y;
+  const st=$('steps').getBoundingClientRect();const p=Math.max(0,Math.min(1,(innerHeight*.75-st.top)/(st.height+innerHeight*.2)));
+  $('trk').style.setProperty('--s',p);document.querySelectorAll('.step').forEach((s,i)=>s.classList.toggle('lit',p>=i/4+.05));
+  let cur=null;secs.forEach(s=>{if(s.getBoundingClientRect().top<innerHeight*.4)cur=s.id});
+  document.querySelectorAll('#links a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+cur));}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
 $('burger').onclick=()=>$('links').classList.toggle('open');
 document.querySelectorAll('#links a').forEach(a=>a.onclick=()=>$('links').classList.remove('open'));
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
 </body>
 </html>
