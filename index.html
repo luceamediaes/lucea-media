@@ -437,7 +437,7 @@ const rs=[...$('rot').children];let ri=0;
 if(!reduce)setInterval(()=>{const a=rs[ri];a.classList.add('out');a.classList.remove('on');ri=(ri+1)%rs.length;const b=rs[ri];b.classList.remove('out');b.classList.add('on');setTimeout(()=>a.classList.remove('out'),650)},2400);
 
 /* contadores del panel de ejemplo */
-function count(el,to,dur){const t0=performance.now();const f=t=>{const p=Math.min(1,(t-t0)/dur);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)}
+function count(el,to,dur){const t0=performance.now();const f=t=>{const p=Math.max(0,Math.min(1,(t-t0)/dur));el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)}
 setTimeout(()=>{count($('k1'),48,1800);count($('k2'),17,1800);count($('k3'),6,1800)},500);
 
 /* contactos de ejemplo que van entrando */
