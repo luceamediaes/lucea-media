@@ -247,6 +247,52 @@ footer a{margin-left:20px;text-decoration:none}footer a:hover{color:var(--tx)}
   .p1{right:2%;top:6%}.p2{left:2%;bottom:6%}.p3{display:none}
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv,.fi,.hero h1 .w{opacity:1;transform:none;filter:none}.rot span.on{opacity:1}}
+
+/* ===== Tema claro y luminoso ===== */
+:root{--bg:#fbf6ee;--s1:#ffffff;--s2:#f6ecdd;--tx:#1d140b;--mu:#6e5c48;--amb:#d98a1c;--amb2:#c2700a;--line:rgba(29,20,11,.1);--line2:rgba(29,20,11,.18);--glow:rgba(217,138,28,.4)}
+.grain,.dots{display:none}
+#spot{background:radial-gradient(600px circle at var(--x,50%) var(--y,30%),rgba(255,196,110,.16),transparent 60%)}
+.kick{background:#fff;box-shadow:inset 0 0 0 1px var(--line),0 4px 14px -6px rgba(120,70,10,.15)}
+.btn.pri{background:var(--tx);color:#fff;box-shadow:0 12px 30px -10px rgba(120,70,10,.45)}
+.btn.pri:hover{box-shadow:0 18px 40px -10px rgba(217,138,28,.6)}
+.btn.sec{background:#fff;box-shadow:inset 0 0 0 1px var(--line2)}
+.btn.sec:hover{background:#fff8ec}
+.bar{background:rgba(255,255,255,.78);box-shadow:inset 0 0 0 1px var(--line),0 20px 50px -25px rgba(120,70,10,.35)}
+.links a:hover,.links a.on{background:rgba(29,20,11,.06)}
+.burger{background:rgba(29,20,11,.06)}
+.beam{opacity:.75}
+.orb{background:radial-gradient(circle,rgba(255,196,110,.55),rgba(255,214,150,.2) 40%,transparent 66%)}
+.rot span{background:linear-gradient(180deg,#f0ad48,#b45f06)!important;-webkit-background-clip:text!important;background-clip:text!important}
+em{color:var(--amb2)}
+.cell{box-shadow:0 24px 60px -35px rgba(120,70,10,.35)}
+.cell::before{background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),rgba(217,138,28,.7),rgba(29,20,11,.1) 40%)}
+.cell::after{background:radial-gradient(500px circle at var(--mx,50%) var(--my,0%),rgba(255,196,110,.14),transparent 50%)}
+.chips span{background:var(--s2);box-shadow:none;color:var(--mu)}
+.pop{background:rgba(255,255,255,.95);color:var(--tx);box-shadow:inset 0 0 0 1px var(--line),0 16px 34px -12px rgba(120,70,10,.35)}
+.brw{background:#fffdf9;box-shadow:inset 0 0 0 1px var(--line2),0 26px 50px -25px rgba(120,70,10,.4)}
+.brw .t i{background:#e2d6c4}
+.sk{background:rgba(29,20,11,.08)}
+.gr div{background:var(--s2);box-shadow:none}
+.bt{background:var(--tx);color:#fff}
+.post:nth-child(1){color:#fff8ec}
+.pains{box-shadow:inset 0 0 0 1px var(--line),0 24px 60px -40px rgba(120,70,10,.35)}
+.pain{background:#fff}
+.calc{box-shadow:inset 0 0 0 1px var(--line),0 30px 70px -40px rgba(120,70,10,.4)}
+.calc .r{background:radial-gradient(circle at 70% 20%,rgba(255,196,110,.45),transparent 60%),var(--s2)}
+.field label{color:var(--mu)}
+input[type=range]{background:linear-gradient(90deg,var(--amb) var(--p,30%),rgba(29,20,11,.12) var(--p,30%))}
+input[type=range]::-webkit-slider-thumb{border:2px solid var(--amb)}
+.big{background:linear-gradient(180deg,#1d140b,#b45f06);-webkit-background-clip:text;background-clip:text}
+.calc .rw{color:var(--mu)}
+.person{box-shadow:0 24px 60px -35px rgba(120,70,10,.4)}
+.person .t,.person h3{color:#fff}.person p{color:rgba(255,255,255,.82)}
+.person .ini{color:var(--amb)}
+.person img{filter:saturate(.9) contrast(1.02)}
+summary::after{border-color:var(--amb2)}
+.cbox li{color:var(--mu)}
+.form{box-shadow:0 0 0 1px var(--line),0 40px 100px -40px rgba(217,138,28,.6)}
+.foot-big{-webkit-text-stroke:1px rgba(29,20,11,.14)}
+@media (max-width:1000px){.links.open{background:rgba(255,255,255,.97);box-shadow:0 20px 50px -20px rgba(120,70,10,.3)}}
 </style>
 </head>
 <body>
