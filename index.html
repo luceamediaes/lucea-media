@@ -346,6 +346,17 @@ body{background:radial-gradient(1200px 800px at 80% 0%,#1c3a2e,transparent 60%),
 .terms span{padding:9px 16px;border-radius:99px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px var(--line);font-size:14px}
 @media(max-width:980px){.cal{grid-template-columns:1fr 1fr}.vf{grid-template-columns:1fr;padding:34px 24px}.packs{grid-template-columns:1fr}}
 @media(max-width:600px){.cal{grid-template-columns:1fr}}
+
+.rates{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.rates h2{font-size:clamp(40px,5vw,72px);margin:20px 0 18px}
+.rates p{color:var(--mu);margin:0 0 14px}
+.rt{display:grid;gap:12px}
+.rr{display:flex;align-items:center;gap:20px;padding:22px 26px;border-radius:22px;background:rgba(255,255,255,.03);box-shadow:inset 0 0 0 1px var(--line)}
+.rr .pc{flex:none;width:150px;white-space:nowrap;font:400 48px/1 var(--serif);color:var(--amb2)}
+.rr b{display:block;font-size:18px}.rr small{color:var(--mu);font-size:14.5px}
+.rr.hl{background:linear-gradient(135deg,rgba(245,199,126,.14),rgba(255,255,255,.02));box-shadow:inset 0 0 0 1.5px var(--amb)}
+.rnote{font-size:13px;color:var(--mu);margin-top:14px}
+@media(max-width:980px){.rates{grid-template-columns:1fr}.rr .pc{width:92px;font-size:42px}}
 </style>
 </head>
 <body>
@@ -471,6 +482,30 @@ body{background:radial-gradient(1200px 800px at 80% 0%,#1c3a2e,transparent 60%),
   </div>
 </section>
 
+<section class="s" id="tipos" style="padding-top:20px">
+  <div class="wrap rates">
+    <div class="rv">
+      <div class="kick"><i></i>Impuesto sobre Sociedades</div>
+      <h2>Cada año, un tipo distinto. <em>Cada año, una pregunta.</em></h2>
+      <p>La Ley 7/2024 baja poco a poco el Impuesto sobre Sociedades para pymes y microempresas hasta 2029. El tipo cambia cada ejercicio según lo que factura la empresa.</p>
+      <p>Muchas SL no saben qué tipo les toca ni si lo están aplicando bien. Esa duda es la puerta de entrada a tu despacho: lanzamos campañas que la responden con el nombre de tu asesoría.</p>
+      <ul style="list-style:none;padding:0;margin:22px 0 0;display:grid;gap:10px">
+        <li style="display:flex;gap:10px"><span style="color:var(--amb)">✦</span>Anuncios «¿Qué tipo de Sociedades te toca este año?»</li>
+        <li style="display:flex;gap:10px"><span style="color:var(--amb)">✦</span>Formulario que filtra por facturación y forma jurídica</li>
+        <li style="display:flex;gap:10px"><span style="color:var(--amb)">✦</span>Campañas antes del cierre y antes de julio</li>
+      </ul>
+    </div>
+    <div class="rv" style="--d:.1s">
+      <div class="rt">
+        <div class="rr"><span class="pc">25%</span><div><b>Tipo general</b><small>Empresas que facturan 10 millones o más</small></div></div>
+        <div class="rr hl"><span class="pc">23%</span><div><b>Pymes</b><small>Facturación inferior a 10 millones · sigue bajando hasta 2029</small></div></div>
+        <div class="rr hl"><span class="pc">19–21%</span><div><b>Microempresas</b><small>Facturación inferior a 1 millón · 19% en los primeros 50.000 € de base</small></div></div>
+      </div>
+      <p class="rnote">Tipos orientativos para ejercicios iniciados en 2026, según la Ley 7/2024. Hay requisitos y excepciones: el tipo de cada empresa lo confirma su asesoría.</p>
+    </div>
+  </div>
+</section>
+
 <section class="s" id="proceso">
   <div class="wrap proc">
     <div class="stk">
@@ -545,6 +580,7 @@ body{background:radial-gradient(1200px 800px at 80% 0%,#1c3a2e,transparent 60%),
       <details><summary>¿Hay permanencia?</summary><p>No. Trabajamos mes a mes. Si no te convence, lo dejas.</p></details>
       <details><summary>¿Cómo evitáis contactos que no encajan?</summary><p>El formulario pregunta forma jurídica, número de empleados y servicios. Así sabes antes de llamar si es una SL que te interesa o un particular con una duda puntual.</p></details>
       <details><summary>¿Por qué cambiáis los anuncios según la época del año?</summary><p>Porque las empresas buscan asesoría en momentos concretos: cierre de año, trimestres de IVA, Renta o Impuesto de Sociedades. Anunciarse en esas semanas cuesta lo mismo y trae más contactos.</p></details>
+      <details><summary>¿Hacéis campañas sobre los nuevos tipos del Impuesto sobre Sociedades?</summary><p>Sí. Los tipos reducidos para pymes y microempresas cambian cada año hasta 2029, y muchas sociedades no saben cuál les toca. Preparamos anuncios que resuelven esa duda y llevan a la empresa a tu despacho.</p></details>
       <details><summary>¿Hacéis campañas sobre Verifactu?</summary><p>Sí. Preparamos anuncios y contenido sobre Verifactu y factura electrónica con los plazos oficiales vigentes en cada momento, para que las empresas con dudas lleguen a tu despacho.</p></details>
       <details><summary>¿Qué recibo cada mes?</summary><p>Un informe claro: contactos recibidos, cuántos eran sociedades, coste por contacto y qué cambiamos el mes siguiente.</p></details>
       <details><summary>¿Trabajáis en toda España?</summary><p>Sí. Segmentamos por provincia, ciudad o radio alrededor de tu despacho, según dónde quieras captar clientes.</p></details>
