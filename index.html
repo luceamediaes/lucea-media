@@ -312,6 +312,40 @@ body{background:radial-gradient(1200px 800px at 80% 0%,#1c3a2e,transparent 60%),
  .panel{width:280px}.chip{display:none}.chip.keep{display:block}
  .links.open{background:rgba(18,36,29,.97)}
 }
+
+/* --- nuevas secciones: temporada fiscal, Verifactu, paquetes --- */
+.cal{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.mo{position:relative;padding:30px 26px 28px;border-radius:24px;background:rgba(255,255,255,.03);box-shadow:inset 0 0 0 1px var(--line);overflow:hidden}
+.mo .m{font:400 15px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--amb)}
+.mo h3{font-size:32px;margin:16px 0 10px}
+.mo p{margin:0;color:var(--mu);font-size:15.5px}
+.mo .mad{margin-top:20px;padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.22);font-size:14px;color:var(--tx)}
+.mo .mad b{display:block;font:600 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--amb);margin-bottom:4px}
+.note{text-align:center;color:var(--mu);font-size:14px;margin-top:22px}
+.vf{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:56px;border-radius:32px;background:linear-gradient(135deg,rgba(245,199,126,.12),rgba(255,255,255,.02));box-shadow:inset 0 0 0 1px var(--line2)}
+.vf h2{font-size:clamp(40px,5vw,72px);margin:20px 0 18px}
+.vf p{color:var(--mu);margin:0 0 14px}
+.vf ul{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:10px}
+.vf li{display:flex;gap:10px;font-size:16px}.vf li::before{content:'✦';color:var(--amb)}
+.adm{background:#f4ecdc;color:#12241d;border-radius:22px;padding:22px;box-shadow:0 30px 60px -20px rgba(0,0,0,.5);font-size:15px}
+.adm .hd{display:flex;align-items:center;gap:10px;margin-bottom:12px}.adm .av{width:38px;height:38px;border-radius:50%;background:#12241d;color:#f5c77e;display:grid;place-items:center;font-weight:700}
+.adm .hd small{display:block;color:#6a6a5e;font-size:12px}
+.adm .img{margin:12px 0;border-radius:14px;padding:26px 22px;background:linear-gradient(140deg,#12241d,#2c5a49);color:#f4ecdc;font:400 30px/1.05 var(--serif)}
+.adm .img em{color:#f5c77e}
+.adm .cta{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#555}.adm .cta span{background:#e3d9c4;color:#12241d;padding:8px 12px;border-radius:8px;font-weight:600}
+.packs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pk{position:relative;display:flex;flex-direction:column;padding:36px 30px;border-radius:28px;background:rgba(255,255,255,.03);box-shadow:inset 0 0 0 1px var(--line)}
+.pk.feat{background:linear-gradient(160deg,rgba(245,199,126,.14),rgba(255,255,255,.03));box-shadow:inset 0 0 0 1.5px var(--amb)}
+.pk .tag{position:absolute;top:-13px;left:30px;padding:5px 12px;border-radius:99px;background:var(--amb);color:#12241d;font:600 12px var(--sans)}
+.pk h3{font-size:38px}
+.pk .for{color:var(--mu);font-size:15px;margin:8px 0 20px}
+.pk ul{list-style:none;padding:0;margin:0 0 28px;display:grid;gap:10px;font-size:15.5px}
+.pk li{display:flex;gap:10px}.pk li::before{content:'✓';color:var(--amb);font-weight:700}
+.pk .btn{margin-top:auto;align-self:flex-start}
+.terms{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:28px}
+.terms span{padding:9px 16px;border-radius:99px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px var(--line);font-size:14px}
+@media(max-width:980px){.cal{grid-template-columns:1fr 1fr}.vf{grid-template-columns:1fr;padding:34px 24px}.packs{grid-template-columns:1fr}}
+@media(max-width:600px){.cal{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -320,7 +354,7 @@ body{background:radial-gradient(1200px 800px at 80% 0%,#1c3a2e,transparent 60%),
 
 <header><div class="bar" id="bar">
   <a class="logo" href="#inicio"><b></b>Lucea Media</a>
-  <nav class="links" id="links"><a href="#servicios">Servicios</a><a href="#proceso">Proceso</a><a href="#calculadora">Calculadora</a><a href="#nosotros">Nosotros</a><a href="#contacto">Contacto</a></nav>
+  <nav class="links" id="links"><a href="#servicios">Servicios</a><a href="#temporada">Temporada fiscal</a><a href="#proceso">Proceso</a><a href="#paquetes">Paquetes</a><a href="#nosotros">Nosotros</a><a href="#contacto">Contacto</a></nav>
   <a class="btn pri" href="https://api.leadconnectorhq.com/widget/booking/J47klrLIP7jcQ3rkrOHu" target="_blank" rel="noopener">Reservar llamada</a>
   <button class="burger" id="burger" aria-label="Abrir menú">☰</button>
 </div></header>
@@ -362,9 +396,9 @@ body{background:radial-gradient(1200px 800px at 80% 0%,#1c3a2e,transparent 60%),
   <div class="wrap">
     <div class="sh"><div class="kick rv"><i></i>Para quién</div><h2 class="rv">Para asesorías que quieren <em>crecer</em> con empresas.</h2></div>
     <div class="pains">
-      <div class="pain rv"><span class="n">01</span><div><h3>Asesorías y gestorías</h3><p>Despachos que llevan contabilidad, fiscalidad o laboral y quieren más empresas en cartera.</p></div></div>
-      <div class="pain rv" style="--d:.1s"><span class="n">02</span><div><h3>Que buscan sociedades</h3><p>Clientes SL y SA, con cuotas mensuales más altas y relaciones de largo plazo.</p></div></div>
-      <div class="pain rv" style="--d:.2s"><span class="n">03</span><div><h3>Sin depender del boca a boca</h3><p>Un sistema que trae contactos cada mes, no solo cuando llega una recomendación.</p></div></div>
+      <div class="pain rv"><span class="n">01</span><div><h3>Asesorías que llevan sociedades</h3><p>Despachos de contabilidad, fiscal y laboral que quieren más SL y SA en cartera, con cuotas más altas y relaciones de años.</p></div></div>
+      <div class="pain rv" style="--d:.1s"><span class="n">02</span><div><h3>De autónomo a SL</h3><p>Llegamos a autónomos que facturan cada vez más y se plantean crear su sociedad. Necesitan quien les acompañe desde la constitución.</p></div></div>
+      <div class="pain rv" style="--d:.2s"><span class="n">03</span><div><h3>Empresas que cambian de asesoría</h3><p>Sociedades descontentas con su gestoría actual, sobre todo al cerrar el año. Es el momento en que más se cambia.</p></div></div>
     </div>
   </div>
 </section>
@@ -404,19 +438,53 @@ body{background:radial-gradient(1200px 800px at 80% 0%,#1c3a2e,transparent 60%),
   </div>
 </section>
 
+<section class="s" id="temporada" style="padding-top:60px">
+  <div class="wrap">
+    <div class="sh"><div class="kick rv"><i></i>Temporada fiscal</div><h2 class="rv">Cada trimestre, <em>una razón</em> para buscar asesoría.</h2><p class="rv">El calendario fiscal español marca cuándo las empresas tienen prisa. Lanzamos tus campañas justo en esos momentos.</p></div>
+    <div class="cal">
+      <div class="mo rv"><span class="m">Diciembre · Enero</span><h3>Cierre y cambio de asesoría</h3><p>Fin de ejercicio, resúmenes anuales de IVA y retenciones. Es cuando más empresas deciden cambiar de despacho.</p><div class="mad"><b>Anuncio</b>«¿Empiezas el año con una asesoría que te contesta?»</div></div>
+      <div class="mo rv" style="--d:.08s"><span class="m">Abril · Julio · Octubre</span><h3>Trimestres de IVA y retenciones</h3><p>Cada trimestre, la empresa que lo lleva sola o mal atendida se agobia. Ahí aparece tu despacho.</p><div class="mad"><b>Anuncio</b>«Que el próximo trimestre no te pille solo»</div></div>
+      <div class="mo rv" style="--d:.16s"><span class="m">Abril · Junio</span><h3>Campaña de la Renta</h3><p>Captamos autónomos y profesionales que hoy son una declaración y mañana pueden ser una SL.</p><div class="mad"><b>Anuncio</b>«¿Facturas cada vez más? Hablemos de tu sociedad»</div></div>
+      <div class="mo rv" style="--d:.24s"><span class="m">Julio</span><h3>Impuesto sobre Sociedades</h3><p>Las sociedades preparan el cierre fiscal del año anterior. Buen momento para mostrar que tu despacho es especialista en SL y SA.</p><div class="mad"><b>Anuncio</b>«Tu Impuesto de Sociedades, en manos expertas»</div></div>
+    </div>
+    <p class="note rv">Las fechas exactas de cada campaña se ajustan al calendario oficial de la Agencia Tributaria de cada año.</p>
+  </div>
+</section>
+
+<section class="s" id="verifactu" style="padding-top:20px">
+  <div class="wrap">
+    <div class="vf rv">
+      <div>
+        <div class="kick"><i></i>Verifactu y factura electrónica</div>
+        <h2>Las empresas tienen dudas. <em>Tu despacho, las respuestas.</em></h2>
+        <p>Verifactu y la factura electrónica obligan a las empresas a cambiar cómo facturan, y muchas todavía no saben qué tienen que hacer ni cuándo.</p>
+        <p>Convertimos esa duda en contactos: campañas con contenido útil que llevan a las sociedades directamente a tu asesoría.</p>
+        <ul><li>Anuncios y guías sobre Verifactu con el nombre de tu despacho</li><li>Formulario que filtra por forma jurídica y programa de facturación</li><li>Mensajes siempre actualizados con los plazos oficiales vigentes</li></ul>
+      </div>
+      <div class="adm" aria-label="Ejemplo de anuncio">
+        <div class="hd"><div class="av">TA</div><div><b>Tu Asesoría</b><small>Publicidad · ejemplo</small></div></div>
+        <div>¿Tu software de facturación está preparado? Te revisamos gratis si tu empresa cumple con Verifactu.</div>
+        <div class="img">¿Tu SL está lista para <em>Verifactu?</em></div>
+        <div class="cta"><span style="background:none;padding:0;color:#555;font-weight:400">tuasesoria.es</span><span>Pedir revisión</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="s" id="proceso">
   <div class="wrap proc">
     <div class="stk">
       <div class="kick rv"><i></i>Proceso</div>
       <h2 class="rv">Cómo trabajamos <em>contigo</em>.</h2>
-      <p class="rv">Cuatro pasos para pasar de depender del boca a boca a recibir contactos de empresas cada mes.</p>
+      <p class="rv">Así llega una sociedad nueva a tu despacho, desde el anuncio hasta la firma.</p>
       <div class="rv" style="margin-top:30px"><a class="btn sec" href="#contacto">Empezar ahora <span class="ar">→</span></a></div>
     </div>
     <div class="steps" id="steps"><div class="fill" id="fill"></div>
-      <div class="step"><small>Paso 01</small><h3>Análisis</h3><p>Revisamos tu asesoría, tus servicios, tu web y el tipo de sociedad que quieres captar.</p></div>
-      <div class="step"><small>Paso 02</small><h3>Estrategia</h3><p>Definimos canales, mensajes, presupuesto y objetivos de contactos.</p></div>
-      <div class="step"><small>Paso 03</small><h3>Lanzamiento</h3><p>Ponemos en marcha campañas, landing pages y contenido.</p></div>
-      <div class="step"><small>Paso 04</small><h3>Optimización</h3><p>Medimos cada mes y ajustamos para conseguir más contactos con el mismo presupuesto.</p></div>
+      <div class="step"><small>Paso 01</small><h3>El anuncio</h3><p>El administrador de una SL ve tu despacho en Facebook, Instagram o Google justo cuando busca asesoría.</p></div>
+      <div class="step"><small>Paso 02</small><h3>El formulario</h3><p>Responde en 30 segundos: forma jurídica, número de empleados, servicios que necesita y cuándo quiere empezar.</p></div>
+      <div class="step"><small>Paso 03</small><h3>El aviso</h3><p>A ti te llega el contacto al momento, y a él una confirmación por WhatsApp o email.</p></div>
+      <div class="step"><small>Paso 04</small><h3>La llamada</h3><p>Hablas solo con empresas que encajan con tu despacho. Nada de contactos que no te interesan.</p></div>
+      <div class="step"><small>Paso 05</small><h3>Nuevo cliente</h3><p>La sociedad empieza a trabajar contigo. Y cada mes te enviamos un informe con lo que ha funcionado.</p></div>
     </div>
   </div>
 </section>
@@ -442,6 +510,18 @@ body{background:radial-gradient(1200px 800px at 80% 0%,#1c3a2e,transparent 60%),
   </div>
 </section>
 
+<section class="s" id="paquetes" style="padding-top:60px">
+  <div class="wrap">
+    <div class="sh"><div class="kick rv"><i></i>Paquetes</div><h2 class="rv">Elige cómo <em>empezar</em>.</h2><p class="rv">Precio cerrado tras una primera conversación gratuita. Depende de tu zona y de cuántas sociedades quieras captar.</p></div>
+    <div class="packs">
+      <div class="pk rv"><h3>Captación</h3><p class="for">Para despachos que ya tienen buena web y quieren contactos.</p><ul><li>Campañas en Meta Ads y Google Ads</li><li>Anuncios por temporada fiscal</li><li>Formulario que filtra sociedades</li><li>Avisos de cada contacto nuevo</li><li>Informe mensual</li></ul><a class="btn sec" href="#contacto">Pedir precio <span class="ar">→</span></a></div>
+      <div class="pk feat rv" style="--d:.1s"><span class="tag">Recomendado</span><h3>Captación + Web</h3><p class="for">Para despachos cuya web no convierte, o que no tienen web.</p><ul><li>Todo lo del paquete Captación</li><li>Landing page para sociedades</li><li>Campaña Verifactu y factura electrónica</li><li>Seguimiento de contactos en CRM</li><li>Revisión de resultados cada mes</li></ul><a class="btn pri" href="#contacto">Pedir precio <span class="ar">→</span></a></div>
+      <div class="pk rv" style="--d:.2s"><h3>Despacho completo</h3><p class="for">Para despachos que quieren delegar todo el marketing.</p><ul><li>Todo lo de Captación + Web</li><li>Redes sociales con calendario fiscal</li><li>Branding e imagen del despacho</li><li>Varias campañas a la vez</li><li>Reunión mensual de estrategia</li></ul><a class="btn sec" href="#contacto">Pedir precio <span class="ar">→</span></a></div>
+    </div>
+    <div class="terms rv"><span>✦ Sin costes de alta</span><span>✦ Sin permanencia</span><span>✦ El presupuesto de anuncios lo decides tú</span></div>
+  </div>
+</section>
+
 <section class="s" id="nosotros" style="padding-top:60px">
   <div class="wrap">
     <div class="sh"><div class="kick rv"><i></i>Nosotros</div><h2 class="rv">Las personas detrás de <em>tus campañas</em>.</h2><p class="rv">Un equipo pequeño que trabaja de cerca con cada asesoría.</p></div>
@@ -461,6 +541,13 @@ body{background:radial-gradient(1200px 800px at 80% 0%,#1c3a2e,transparent 60%),
       <details><summary>¿Qué presupuesto de publicidad necesito?</summary><p>Depende de tu zona y de cuántas sociedades quieras captar. Lo vemos en la primera conversación y te proponemos una cifra realista.</p></details>
       <details><summary>¿Necesito tener ya una web?</summary><p>No. Si no tienes web o la tuya no convierte, creamos una web o landing page pensada para captar empresas.</p></details>
       <details><summary>¿Puedo contratar solo un servicio?</summary><p>Sí. Puedes empezar por campañas, web, redes o branding, y combinarlos más adelante.</p></details>
+      <details><summary>¿Cuánto tardan en llegar los primeros contactos?</summary><p>Las campañas suelen empezar a traer contactos en las primeras semanas. Los primeros meses sirven también para ajustar mensajes y zona, y el rendimiento mejora con el tiempo.</p></details>
+      <details><summary>¿Hay permanencia?</summary><p>No. Trabajamos mes a mes. Si no te convence, lo dejas.</p></details>
+      <details><summary>¿Cómo evitáis contactos que no encajan?</summary><p>El formulario pregunta forma jurídica, número de empleados y servicios. Así sabes antes de llamar si es una SL que te interesa o un particular con una duda puntual.</p></details>
+      <details><summary>¿Por qué cambiáis los anuncios según la época del año?</summary><p>Porque las empresas buscan asesoría en momentos concretos: cierre de año, trimestres de IVA, Renta o Impuesto de Sociedades. Anunciarse en esas semanas cuesta lo mismo y trae más contactos.</p></details>
+      <details><summary>¿Hacéis campañas sobre Verifactu?</summary><p>Sí. Preparamos anuncios y contenido sobre Verifactu y factura electrónica con los plazos oficiales vigentes en cada momento, para que las empresas con dudas lleguen a tu despacho.</p></details>
+      <details><summary>¿Qué recibo cada mes?</summary><p>Un informe claro: contactos recibidos, cuántos eran sociedades, coste por contacto y qué cambiamos el mes siguiente.</p></details>
+      <details><summary>¿Trabajáis en toda España?</summary><p>Sí. Segmentamos por provincia, ciudad o radio alrededor de tu despacho, según dónde quieras captar clientes.</p></details>
     </div>
   </div>
 </section>
